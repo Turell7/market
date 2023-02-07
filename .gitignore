@@ -2,4 +2,28 @@
 
 # dependencies
 /server/node_modules
-/adminApp/node_modules
+
+# Logs
+/admin-app/logs
+*.log
+/admin-app/npm-debug.log*
+/admin-app/yarn-debug.log*
+/admin-app/yarn-error.log*
+/admin-app/pnpm-debug.log*
+/admin-app/lerna-debug.log*
+
+/admin-app/node_modules
+/admin-app/dist
+/admin-app/dist-ssr
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
