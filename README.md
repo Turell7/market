@@ -6,9 +6,9 @@
 
 #### 1.1 Для `server`: в разработке
 
-#### 1.2 Для `adminApp`:
+#### 1.2 Для `admin-app`:
 
-- `cd adminApp` - перейти в дерикторию adminApp
+- `cd admin-app` - перейти в дерикторию admin-app
 - `npm run dev` - запустить приложение
 
 ### 2. Git
