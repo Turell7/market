@@ -4,17 +4,17 @@
 /server/node_modules
 
 # Logs
-/adminApp/logs
+/admin-app/logs
 *.log
-/adminApp/npm-debug.log*
-/adminApp/yarn-debug.log*
-/adminApp/yarn-error.log*
-/adminApp/pnpm-debug.log*
-/adminApp/lerna-debug.log*
+/admin-app/npm-debug.log*
+/admin-app/yarn-debug.log*
+/admin-app/yarn-error.log*
+/admin-app/pnpm-debug.log*
+/admin-app/lerna-debug.log*
 
-/adminApp/node_modules
-/adminApp/dist
-/adminApp/dist-ssr
+/admin-app/node_modules
+/admin-app/dist
+/admin-app/dist-ssr
 *.local
 
 # Editor directories and files
