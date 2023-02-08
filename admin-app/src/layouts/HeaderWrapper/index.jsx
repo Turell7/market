@@ -5,7 +5,7 @@ import { useState } from 'react'
 import MuiAppBar from '@mui/material/AppBar'
 import MuiDrawer from '@mui/material/Drawer'
 import { Header } from '../Header'
-import { SideBar } from '../SIdeBar'
+import { SideBar } from '../SideBarp'
 
 const drawerWidth = 240
 
