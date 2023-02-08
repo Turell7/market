@@ -1,32 +1,31 @@
-import * as React from 'react'
 import {
-  Box, Divider, Drawer, IconButton, List, ListItem,
-  ListItemButton, ListItemIcon, ListItemText,
+  Divider, IconButton, List, ListItem, ListItemButton, ListItemIcon, ListItemText,
 } from '@mui/material'
-
-import MenuIcon from '@mui/icons-material/Menu'
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft'
+import ChevronRightIcon from '@mui/icons-material/ChevronRight'
 import AccountCircle from '@mui/icons-material/AccountCircle'
+import StorefrontIcon from '@mui/icons-material/Storefront'
+import CategoryOutlinedIcon from '@mui/icons-material/CategoryOutlined'
+import PeopleIcon from '@mui/icons-material/People'
+import { useLocation, useNavigate } from 'react-router-dom'
 
-export function SideBar() {
-  const [isOpen, setIsOpen] = React.useState(false)
+export function SideBar({
+  open, theme, handleDrawerClose, Drawer, DrawerHeader,
+}) {
+  const navigate = useNavigate()
+  const location = useLocation()
 
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return
-    }
-    setIsOpen(open)
-  }
-
-  const list = () => (
-    <Box
-      sx={{ width: 250 }}
-      role="presentation"
-      onClick={toggleDrawer(false)}
-      onKeyDown={toggleDrawer(false)}
-    >
+  return (
+    <Drawer variant="permanent" open={open}>
+      <DrawerHeader>
+        <IconButton onClick={handleDrawerClose}>
+          {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+        </IconButton>
+      </DrawerHeader>
+      <Divider />
       <List>
         <ListItem disablePadding>
-          <ListItemButton>
+          <ListItemButton onClick={() => navigate('/profile')} selected={location.pathname === '/profile'}>
             <ListItemIcon>
               <AccountCircle />
             </ListItemIcon>
@@ -34,37 +33,33 @@ export function SideBar() {
           </ListItemButton>
         </ListItem>
       </List>
-      <Divider />
       <List>
-        {['Users', 'Roles', 'Products', 'Categories', ''].map((text) => (
-          <ListItem key={text} disablePadding>
-            <ListItemButton>
-              <ListItemText primary={text} />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate('/users')} selected={location.pathname === '/users'}>
+            <ListItemIcon>
+              <PeopleIcon />
+            </ListItemIcon>
+            <ListItemText>Users</ListItemText>
+          </ListItemButton>
+        </ListItem>
+        <Divider />
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate('/products')} selected={location.pathname === '/products'}>
+            <ListItemIcon>
+              <StorefrontIcon />
+            </ListItemIcon>
+            <ListItemText>Products</ListItemText>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton onClick={() => navigate('/categories')} selected={location.pathname === '/categories'}>
+            <ListItemIcon>
+              <CategoryOutlinedIcon />
+            </ListItemIcon>
+            <ListItemText>Categories</ListItemText>
+          </ListItemButton>
+        </ListItem>
       </List>
-    </Box>
-  )
-
-  return (
-    <div>
-      <IconButton
-        size="large"
-        edge="start"
-        color="inherit"
-        aria-label="menu"
-        sx={{ mr: 2 }}
-        onClick={toggleDrawer(true)}
-      >
-        <MenuIcon />
-      </IconButton>
-      <Drawer
-        open={isOpen}
-        onClose={toggleDrawer(false)}
-      >
-        {list()}
-      </Drawer>
-    </div>
+    </Drawer>
   )
 }
