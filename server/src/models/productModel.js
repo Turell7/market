@@ -1,33 +1,5 @@
-const { Sequelize } = require('sequelize')
 // Получение всех продуктов -------------------------------------------------------
-const AllProducts = async (res) => {
-  // Подключение к базе данных
-  const sequelize = new Sequelize('market', 'market', '135246', {
-    host: '13.37.52.101',
-    dialect: 'mysql',
-  })
-  try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-  } catch (error) {
-    console.error('Unable to connect to the database:', error)
-    await sequelize.close()
-    res.sendStatus(500)
-    return
-  }
-  // Определение модели продукта
-  const Product = sequelize.define('product', {
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    price: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
-  })
-
-  // Метод получения всех продуктов из базы данных
+const AllProducts = async (Product, req, res) => {
   Product.findAll({ raw: true })
     .then((products) => {
       console.log(products)
@@ -42,35 +14,8 @@ const AllProducts = async (res) => {
 }
 
 // Добавление нового продукта-------------------------------------------------------
-const NewProduct = async (req, res) => {
-  // Подключение к базе данных
-  const sequelize = new Sequelize('market', 'market', '135246', {
-    host: '13.37.52.101',
-    dialect: 'mysql',
-  })
-  try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-  } catch (error) {
-    console.error('Unable to connect to the database:', error)
-    await sequelize.close()
-    res.sendStatus(500)
-    return
-  }
-  // Определение модели продукта
-  const Product = sequelize.define('product', {
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    price: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
-  })
+const NewProduct = async (Product, req, res) => {
   const newProduct = req.body
-
-  // Метод создания нового продукта и добавление в базу данных
   Product.create({
     name: newProduct.name,
     price: newProduct.price,
@@ -90,34 +35,7 @@ const NewProduct = async (req, res) => {
 }
 
 // Получение продукта по id-------------------------------------------------------
-const ProductById = async (req, res) => {
-  // Подключение к базе данных
-  const sequelize = new Sequelize('market', 'market', '135246', {
-    host: '13.37.52.101',
-    dialect: 'mysql',
-  })
-  try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-  } catch (error) {
-    console.error('Unable to connect to the database:', error)
-    await sequelize.close()
-    res.sendStatus(500)
-    return
-  }
-  // Определение модели продукта
-  const Product = sequelize.define('product', {
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    price: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
-  })
-
-  // Метод получения продукта по id из базы данных
+const ProductById = async (Product, req, res) => {
   const { id } = req.params
   Product.findByPk(id)
     .then((product) => {
@@ -141,34 +59,7 @@ const ProductById = async (req, res) => {
 }
 
 // Удаление продукта-------------------------------------------------------
-const deleteProduct = async (req, res) => {
-  // Подключение к базе данных
-  const sequelize = new Sequelize('market', 'market', '135246', {
-    host: '13.37.52.101',
-    dialect: 'mysql',
-  })
-  try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-  } catch (error) {
-    console.error('Unable to connect to the database:', error)
-    await sequelize.close()
-    res.sendStatus(500)
-    return
-  }
-  // Определение модели продукта
-  const Product = sequelize.define('product', {
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    price: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
-  })
-
-  // Метод удаления продукта по id из базы данных
+const deleteProduct = async (Product, req, res) => {
   const { id } = req.params
   Product.destroy({
     where: {
@@ -197,34 +88,8 @@ const deleteProduct = async (req, res) => {
 }
 
 // Редактирования продукта-------------------------------------------------------
-const updateProduct = async (req, res) => {
-  // Подключение к базе данных
-  const sequelize = new Sequelize('market', 'market', '135246', {
-    host: '13.37.52.101',
-    dialect: 'mysql',
-  })
-  try {
-    await sequelize.authenticate()
-    console.log('Connection has been established successfully.')
-  } catch (error) {
-    console.error('Unable to connect to the database:', error)
-    await sequelize.close()
-    res.sendStatus(500)
-    return
-  }
-  // Определение модели продукта
-  const Product = sequelize.define('product', {
-    name: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    price: {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    },
-  })
+const updateProduct = async (Product, req, res) => {
   const { id } = req.params
-  // Метод изменения продукта в базе данных
   Product.update(req.body, {
     where: {
       id: [id],
@@ -243,12 +108,24 @@ const updateProduct = async (req, res) => {
         .json(errFromDB)
     })
 }
+// Получение всех продуктов -------------------------------------------------------
+const testProducts = async (Product, req, res) => {
+  Product.findAll({ raw: true })
+    .then((products) => {
+      console.log(products)
+      res
+        .status(200)
+        .json(products)
+    })
+    .catch((errFromDB) => {
+      console.log(errFromDB)
+      res.sendStatus(500)
+    })
+}
 
-module.exports.AllProducts = AllProducts
-module.exports.NewProduct = NewProduct
-module.exports.ProductById = ProductById
-module.exports.deleteProduct = deleteProduct
-module.exports.updateProduct = updateProduct
+module.exports = {
+  AllProducts, NewProduct, ProductById, deleteProduct, updateProduct, testProducts,
+}
 
 // //Синхронизация с базой данных
 //   sequelize.sync().then((result) => {

@@ -10,7 +10,7 @@ productsRouter.route('/')
 // Добавление нового продукта
   .post(createNewProduct)
 
-productsRouter.route('/:id/')
+productsRouter.route('/:id')
 // Получение конкретного продукта
   .get(getProductById)
 // Удалить продукт
