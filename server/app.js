@@ -1,9 +1,11 @@
 const express = require('express')
-const { productsRouter, adminRouter } = require('./src/routes/productsRouter')
+const cors = require('cors')
+const { productsRouter } = require('./src/routes/productsRouter')
 
 const server = express()
 const PORT = 3050
 
+server.use(cors())
 server.use(express.json())
 server.use('/api/v0.1/products', productsRouter)
 // server.use('/api/v0.1/admin', adminRouter)
