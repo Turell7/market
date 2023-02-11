@@ -1,6 +1,9 @@
+import { Box, Skeleton } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '../../Api'
+import { TableProducts } from '../../components/TableProducts'
 import { PRODUCTS_QUERY_KEY } from '../../tools/queryKeys'
+// import { SkeletonTab } from '../../UIs/loaders/SkeletonTab'
 
 export function Products() {
   const getProductsQueryKey = () => PRODUCTS_QUERY_KEY
@@ -11,22 +14,22 @@ export function Products() {
     queryFn: getAllProducts,
   })
 
-  if (isLoading || isFetching) return <div>Loading ...</div>
+  if (isLoading || isFetching) {
+    return (
+      <Box sx={{ width: 640 }}>
+        <Skeleton sx={{ height: 100 }} />
+        <Skeleton sx={{ height: 80 }} />
+        <Skeleton sx={{ height: 80 }} />
+        <Skeleton sx={{ height: 80 }} />
+        <Skeleton sx={{ height: 80 }} />
+        <Skeleton sx={{ height: 80 }} />
+        <Skeleton variant="text" />
+      </Box>
+    )
+  }
 
   const products = data.data
   return (
-    <div>
-      <h1>Products</h1>
-      {products?.map((product) => (
-        <div key={product.id}>
-          {product.name}
-          <span>
-            {' '}
-            {product.price}
-            р
-          </span>
-        </div>
-      ))}
-    </div>
+    <TableProducts products={products} />
   )
 }
