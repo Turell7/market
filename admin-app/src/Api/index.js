@@ -8,6 +8,14 @@ class Api {
   getAllProducts() {
     return axios.get(`${this.path}/products`)
   }
+
+  getProductById(id) {
+    return axios.get(`${this.path}/products/${id}`)
+  }
+
+  createProduct(productData) {
+    return axios.post(`${this.path}/products`, JSON.stringify(productData))
+  }
 }
 
 const api = new Api()
