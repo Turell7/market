@@ -1,13 +1,15 @@
 const express = require('express')
-const { productsRouter } = require('./src/routes/productsRouter')
-const { adminRouter } = require('./src/routes/adminRouter')
+const { clientSideRouter } = require('./src/routes/clientSideRouter')
+const { adminSideRouter } = require('./src/routes/adminSideRouter')
 
 const server = express()
 const PORT = 3050
 
 server.use(express.json())
-server.use('/api/v0.1/products', productsRouter)
-server.use('/api/v0.1/admin', adminRouter)
+// Роут сайта клиента
+server.use('/api/v0.1/products', clientSideRouter)
+// Роут админки
+server.use('/api/v0.1/admin', adminSideRouter)
 
 server.listen(PORT, () => {
   console.log(`Server has been started on port: ${PORT}`)

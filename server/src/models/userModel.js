@@ -17,7 +17,26 @@ const NewUser = async (UserModel, newUser) => {
   })
   return newUserFromDB
 }
-
+// Обновление пользователя по Email-------------------------------------------------------
+const UpdateUserByEmail = async (UserModel, userData) => {
+  const { email } = userData
+  const result = await UserModel.update(userData, {
+    where: {
+      email: [email],
+    },
+  })
+  return result
+}
+// Обновление пользователя по ID-------------------------------------------------------
+const UpdateUserByID = async (UserModel, userData) => {
+  const { id } = userData
+  const result = await UserModel.update(userData, {
+    where: {
+      id: [id],
+    },
+  })
+  return result
+}
 module.exports = {
-  AllUsers, NewUser,
+  AllUsers, NewUser, UpdateUserByEmail, UpdateUserByID,
 }

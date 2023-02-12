@@ -2,7 +2,9 @@ const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
 const jwtService = require('./jwtService')
 const { userDBService } = require('./DBServices/userDBService')
-const { NewUser, AllUsers } = require('../models/userModel')
+const {
+  NewUser, AllUsers, UpdateUserByEmail, UpdateUserByID,
+} = require('../models/userModel')
 
 const checkEmailUnique = async (email) => {
   console.log(email)
@@ -35,11 +37,46 @@ const createUser = async (userObj) => {
     password: hashPassword,
     refreshToken,
   })
+  const { password, ...returnedUserFromDB } = newUser.dataValues
+  return {
+    ...returnedUserFromDB,
+    accessToken,
+  }
+}
+const authenticateUser = async (userObj) => {
+  const UserModel = await userDBService()
+  const users = await AllUsers(UserModel)
+
+  const currentUser = users.find(
+    (user) => user.email.toLowerCase() === userObj.email.toLowerCase(),
+  )
+
+  if (
+    !currentUser
+    || !(await bcrypt.compare(userObj.password, currentUser.password))
+  ) { throw new Error('Email or password incorrect') }
+
+  const accessToken = jwtService.createAccessToken({ id: currentUser.id })
+  const refreshToken = jwtService.createRefreshToken({ id: currentUser.id })
+
+  currentUser.refreshToken = refreshToken
+  await UpdateUserByEmail(UserModel, currentUser)
+
+  // await updateDB(db)
+
+  const { password, ...restCurrentUser } = currentUser
 
   return {
-    ...newUser.dataValues,
+    ...restCurrentUser,
     accessToken,
   }
 }
 
-module.exports = { checkEmailUnique, createUser }
+const signOut = async (userId) => {
+  const preparedUser = { id: userId, refreshToken: '' }
+  const UserModel = await userDBService()
+  await UpdateUserByID(UserModel, preparedUser)
+}
+module.exports = {
+  checkEmailUnique, createUser, authenticateUser, signOut,
+}

@@ -1,8 +1,7 @@
-const { NewUser, AllUsers } = require('../models/userModel')
+const { AllUsers } = require('../models/userModel')
 const { userDBService } = require('../services/DBServices/userDBService')
 const authService = require('../services/authService')
-// const signIn = async (_req, res) => {
-// }
+
 const signUp = async (req, res) => {
   try {
     if (await authService.checkEmailUnique(req.body.email)) {
@@ -24,20 +23,30 @@ const signUp = async (req, res) => {
   }
 }
 
-const addUsers = async (req, res) => {
+const signIn = async (req, res) => {
   try {
-    const UserModel = await userDBService()
-    const newUser = await NewUser(UserModel, req.body)
-    res
-      .status(201)
-      .json(newUser)
+    try {
+      const authenticatedUser = await authService.authenticateUser(req.body)
+      return res.json(authenticatedUser)
+    } catch (error) {
+      return res.status(400).send(error.message)
+    }
   } catch (error) {
     console.log(error)
-    res
-      .status(500)
-      .json(error)
+    return res.sendStatus(500)
   }
 }
+
+const signOut = async (req, res) => {
+  try {
+    await authService.signOut(req.userId)
+    res.sendStatus(200)
+  } catch (error) {
+    console.log(error)
+    res.sendStatus(500)
+  }
+}
+
 const getUsers = async (req, res) => {
   try {
     const UserModel = await userDBService()
@@ -52,11 +61,10 @@ const getUsers = async (req, res) => {
       .json(error)
   }
 }
-// const signOut = async (req, res) => {
-// }
+
 // const refreshToken = async (req, res) => {
 // }
 
 module.exports = {
-  signUp, getUsers, addUsers,
+  signUp, signIn, signOut, getUsers,
 }
