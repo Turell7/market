@@ -1,22 +1,23 @@
-const {
-  AllProducts, NewProduct, ProductById, deleteProduct, updateProduct,
-} = require('../models/productModel')
-const { productDBService } = require('../services/productDBService')
+// const {
+//   AllProducts, NewProduct, ProductById, deleteProduct, updateProduct,
+// } = require('../models/productModel')
+const productModels = require('../models/productModel')
+const { productDBService } = require('../services/DBServices/productDBService')
 
 const getAllProducts = async (req, res) => {
-  productDBService(AllProducts, req, res)
+  productDBService(productModels.AllProducts, req, res)
 }
 const createNewProduct = async (req, res) => {
-  productDBService(NewProduct, req, res)
+  productDBService(productModels.NewProduct, req, res)
 }
 const getProductById = async (req, res) => {
-  productDBService(ProductById, req, res)
+  productDBService(productModels.ProductById, req, res)
 }
 const deleteProductById = async (req, res) => {
-  productDBService(deleteProduct, req, res)
+  productDBService(productModels.deleteProduct, req, res)
 }
 const updateProductbyId = async (req, res) => {
-  productDBService(updateProduct, req, res)
+  productDBService(productModels.updateProduct, req, res)
 }
 
 module.exports = {
