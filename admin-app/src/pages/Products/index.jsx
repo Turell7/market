@@ -17,12 +17,12 @@ export function Products() {
   if (isLoading || isFetching) {
     return (
       <Box sx={{ width: 640 }}>
-        <Skeleton sx={{ height: 100 }} />
-        <Skeleton sx={{ height: 80 }} />
-        <Skeleton sx={{ height: 80 }} />
-        <Skeleton sx={{ height: 80 }} />
-        <Skeleton sx={{ height: 80 }} />
-        <Skeleton sx={{ height: 80 }} />
+        <Skeleton sx={{ height: 100 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
         <Skeleton variant="text" />
       </Box>
     )
