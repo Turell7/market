@@ -1,7 +1,7 @@
 const { Sequelize } = require('sequelize')
 
 const userDBService = async () => {
-  const sequelize = new Sequelize('market', 'market', '135246', {
+  const sequelize = new Sequelize(`${process.env.DB_NAME}`, `${process.env.DB_USERNAME}`, `${process.env.DB_PASSWORD}`, {
     host: '13.37.52.101',
     dialect: 'mysql',
   })

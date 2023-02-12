@@ -1,9 +1,10 @@
+require('dotenv').config()
 const express = require('express')
 const { clientSideRouter } = require('./src/routes/clientSideRouter')
 const { adminSideRouter } = require('./src/routes/adminSideRouter')
 
 const server = express()
-const PORT = 3050
+const PORT = process.env.SERVER_PORT
 
 server.use(express.json())
 // Роут сайта клиента
