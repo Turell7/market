@@ -1,0 +1,35 @@
+.containerHeader {
+  color: black;
+}
+
+.containerColor{
+  background-color: #8FC0AD;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.containerWr {
+  display: flex;
+  flex-direction: row;
+  /* gap: 15px; */
+  list-style: none;
+  margin: 0;
+}
+
+li {
+  border-right: 1px solid white;
+  padding: 7px;
+}
+li:first-child {
+  border-left: 1px solid white;
+}
+
+.Link {
+  text-decoration: none;
+  color: white;
+}
