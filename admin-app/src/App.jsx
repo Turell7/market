@@ -6,14 +6,16 @@ import { Footer } from './layouts/Footer'
 
 function App() {
   return (
-    <div className="App">
-      <Box sx={{ display: 'flex' }}>
-        <CssBaseline />
-        <HeaderWrapper />
-      </Box>
-      <Outlet />
+    <>
+      <div className="App">
+        <Box sx={{ display: 'flex' }}>
+          <CssBaseline />
+          <HeaderWrapper />
+        </Box>
+        <Outlet />
+      </div>
       <Footer />
-    </div>
+    </>
   )
 }
 
