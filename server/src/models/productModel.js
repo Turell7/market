@@ -11,6 +11,28 @@ const ProductModel = sequelize.define('product', {
     type: Sequelize.INTEGER,
     allowNull: false,
   },
+  status: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
+  description: {
+    type: Sequelize.TEXT,
+  },
+  stock: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
+  discount: {
+    type: Sequelize.INTEGER,
+    defaultValue: 0,
+  },
+  category: {
+    type: Sequelize.INTEGER,
+  },
+  picture: {
+    type: Sequelize.INTEGER,
+  },
+
 })
 
 module.exports = { ProductModel }

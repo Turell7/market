@@ -9,8 +9,8 @@ const server = express()
 const PORT = process.env.SERVER_PORT
 
 server.use(cors())
-
-sequelize.sync()
+// sequelize.sync({ force: true })
+sequelize.sync({ alter: true })
   .then(() => {
     console.log('The DB has been succesfuly synced')
   })

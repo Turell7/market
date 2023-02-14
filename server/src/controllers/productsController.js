@@ -3,7 +3,7 @@
 // } = require('../models/productModel')
 const { ProductModel } = require('../models/productModel')
 const productValidator = require('../validators/productValidator')
-const { getPreparedErrorsFromYup, prepareProduct } = require('../validators/utils')
+const { getPreparedErrorsFromYup } = require('../validators/utils')
 
 const getAllProducts = async (req, res) => {
   try {
@@ -17,9 +17,8 @@ const getAllProducts = async (req, res) => {
 }
 
 const createNewProduct = async (req, res) => {
-  const preparedProduct = prepareProduct(req.body)
   try {
-    await productValidator.createProductSchema.validate(preparedProduct, { abortEarly: false })
+    await productValidator.createProductSchema.validate(req.body, { abortEarly: false })
   } catch (error) {
     res
       .status(400)
@@ -27,7 +26,7 @@ const createNewProduct = async (req, res) => {
     return
   }
   try {
-    const newProductObj = await ProductModel.create(preparedProduct)
+    const newProductObj = await ProductModel.create(req.body)
     res
       .status(201)
       .json(newProductObj)

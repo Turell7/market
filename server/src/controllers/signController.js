@@ -1,6 +1,16 @@
 const authService = require('../services/authService')
+const authValidator = require('../validators/authValidator')
+const { getPreparedErrorsFromYup } = require('../validators/utils')
 
 const signUp = async (req, res) => {
+  try {
+    await authValidator.signUpSchema.validate(req.body, { abortEarly: false })
+  } catch (error) {
+    res
+      .status(400)
+      .json(getPreparedErrorsFromYup(error))
+    return
+  }
   try {
     if (await authService.checkEmailUnique(req.body.email)) {
       const createUser = await authService.createUser(req.body)
@@ -22,15 +32,26 @@ const signUp = async (req, res) => {
 
 const signIn = async (req, res) => {
   try {
+    await authValidator.signInSchema.validate(req.body, { abortEarly: false })
+  } catch (error) {
+    res
+      .status(400)
+      .json(getPreparedErrorsFromYup(error))
+    return
+  }
+  try {
     try {
       const authenticatedUser = await authService.authenticateUser(req.body)
-      return res.json(authenticatedUser)
+      res
+        .status(200)
+        .json(authenticatedUser)
     } catch (error) {
-      return res.status(400).send(error.message)
+      res.status(400).send(error.message)
+      return
     }
   } catch (error) {
     console.log(error)
-    return res.sendStatus(500)
+    res.sendStatus(500)
   }
 }
 

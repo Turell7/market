@@ -12,17 +12,19 @@ const UserModel = sequelize.define('user', {
     type: Sequelize.STRING,
     allowNull: false,
   },
+  last_name: {
+    type: Sequelize.STRING,
+  },
   password: {
     type: Sequelize.STRING,
     allowNull: false,
   },
   avatar: {
-    type: Sequelize.STRING,
-    defaultValue: 'picture',
+    type: Sequelize.TEXT,
+    defaultValue: 'https://www.seekpng.com/png/detail/514-5147412_default-avatar-icon.png',
   },
   about: {
-    type: Sequelize.STRING,
-    allowNull: true,
+    type: Sequelize.TEXT,
   },
   email: {
     type: Sequelize.STRING,
@@ -31,6 +33,10 @@ const UserModel = sequelize.define('user', {
   refreshToken: {
     type: Sequelize.STRING,
     allowNull: false,
+  },
+  role: {
+    type: Sequelize.STRING,
+    defaultValue: 'user',
   },
 })
 
