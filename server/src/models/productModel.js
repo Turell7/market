@@ -126,13 +126,3 @@ const testProducts = async (Product, req, res) => {
 module.exports = {
   AllProducts, NewProduct, ProductById, deleteProduct, updateProduct, testProducts,
 }
-
-// //Синхронизация с базой данных
-//   sequelize.sync().then((result) => {
-//     console.log(result)
-//     sequelize.close()
-//   })
-//     .catch((err) => {
-//       console.log(err)
-//       sequelize.close()
-//     })

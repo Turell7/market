@@ -1,14 +1,18 @@
+require('dotenv').config()
 const express = require('express')
 const cors = require('cors')
-const { productsRouter } = require('./src/routes/productsRouter')
+const { clientSideRouter } = require('./src/routes/clientSideRouter')
+const { adminSideRouter } = require('./src/routes/adminSideRouter')
 
 const server = express()
-const PORT = 3050
+const PORT = process.env.SERVER_PORT
 
 server.use(cors())
 server.use(express.json())
-server.use('/api/v0.1/products', productsRouter)
-// server.use('/api/v0.1/admin', adminRouter)
+// Роут сайта клиента
+server.use('/api/v0.1/products', clientSideRouter)
+// Роут админки
+server.use('/api/v0.1/admin', adminSideRouter)
 
 server.listen(PORT, () => {
   console.log(`Server has been started on port: ${PORT}`)

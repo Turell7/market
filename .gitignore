@@ -2,6 +2,7 @@
 
 # dependencies
 /server/node_modules
+/server/.env
 
 # Logs
 /admin-app/logs
@@ -16,6 +17,17 @@
 /admin-app/dist
 /admin-app/dist-ssr
 *.local
+
+/product-app/logs
+/product-app/npm-debug.log*
+/product-app/yarn-debug.log*
+/product-app/yarn-error.log*
+/product-app/pnpm-debug.log*
+/product-app/lerna-debug.log*
+
+/product-app/node_modules
+/product-app/dist
+/product-app/dist-ssr
 
 # Editor directories and files
 .vscode/*

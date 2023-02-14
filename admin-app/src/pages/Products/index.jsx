@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query'
 import { api } from '../../Api'
 import { TableProducts } from '../../components/TableProducts'
 import { PRODUCTS_QUERY_KEY } from '../../tools/queryKeys'
-// import { SkeletonTab } from '../../UIs/loaders/SkeletonTab'
 
 export function Products() {
   const getProductsQueryKey = () => PRODUCTS_QUERY_KEY
@@ -17,12 +16,12 @@ export function Products() {
   if (isLoading || isFetching) {
     return (
       <Box sx={{ width: 640 }}>
-        <Skeleton sx={{ height: 100 }} />
-        <Skeleton sx={{ height: 80 }} />
-        <Skeleton sx={{ height: 80 }} />
-        <Skeleton sx={{ height: 80 }} />
-        <Skeleton sx={{ height: 80 }} />
-        <Skeleton sx={{ height: 80 }} />
+        <Skeleton sx={{ height: 100 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
         <Skeleton variant="text" />
       </Box>
     )
