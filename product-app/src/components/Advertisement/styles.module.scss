@@ -1,0 +1,22 @@
+.advertisementWr {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    min-height: 290px;
+    background-color: rgba(43, 209, 209, 0.555);    
+}
+
+.advertisementWrRight {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    background-color: rgba(209, 206, 43, 0.555);
+}
+
+.advertisementWrRightDown {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: rgba(209, 157, 43, 0.555);
+}
+
+.advertisementWrRightDownRight {
+    background-color: rgba(43, 129, 209, 0.555);
+}
