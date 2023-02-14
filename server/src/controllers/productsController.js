@@ -2,6 +2,8 @@
 //   AllProducts, NewProduct, ProductById, deleteProduct, updateProduct,
 // } = require('../models/productModel')
 const { ProductModel } = require('../models/productModel')
+const productValidator = require('../validators/productValidator')
+const { getPreparedErrorsFromYup, prepareProduct } = require('../validators/utils')
 
 const getAllProducts = async (req, res) => {
   try {
@@ -10,18 +12,22 @@ const getAllProducts = async (req, res) => {
       .status(200)
       .json(allProductsObj)
   } catch (error) {
-    console.log(error)
     res.sendStatus(500)
   }
 }
 
 const createNewProduct = async (req, res) => {
+  const preparedProduct = prepareProduct(req.body)
   try {
-    const { name, price } = req.body
-    const newProductObj = await ProductModel.create({
-      name,
-      price,
-    })
+    await productValidator.createProductSchema.validate(preparedProduct, { abortEarly: false })
+  } catch (error) {
+    res
+      .status(400)
+      .json(getPreparedErrorsFromYup(error))
+    return
+  }
+  try {
+    const newProductObj = await ProductModel.create(preparedProduct)
     res
       .status(201)
       .json(newProductObj)

@@ -12,10 +12,10 @@ server.use(cors())
 
 sequelize.sync()
   .then(() => {
-    console.log('Synced db.')
+    console.log('The DB has been succesfuly synced')
   })
   .catch((err) => {
-    console.log(`Failed to sync db: ${err.message}`)
+    console.log(`Failed to sync DB: ${err.message}`)
   })
 
 server.use(express.json())
