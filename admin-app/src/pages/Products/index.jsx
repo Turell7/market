@@ -3,7 +3,6 @@ import { useQuery } from '@tanstack/react-query'
 import { api } from '../../Api'
 import { TableProducts } from '../../components/TableProducts'
 import { PRODUCTS_QUERY_KEY } from '../../tools/queryKeys'
-// import { SkeletonTab } from '../../UIs/loaders/SkeletonTab'
 
 export function Products() {
   const getProductsQueryKey = () => PRODUCTS_QUERY_KEY
