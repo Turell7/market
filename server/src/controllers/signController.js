@@ -1,5 +1,3 @@
-const { AllUsers } = require('../models/userModel')
-const { userDBService } = require('../services/DBServices/userDBService')
 const authService = require('../services/authService')
 
 const signUp = async (req, res) => {
@@ -14,7 +12,6 @@ const signUp = async (req, res) => {
     res
       .status(400)
       .json({ error: 'This email is already used' })
-    return
   } catch (error) {
     console.log(error)
     res
@@ -47,24 +44,24 @@ const signOut = async (req, res) => {
   }
 }
 
-const getUsers = async (req, res) => {
-  try {
-    const UserModel = await userDBService()
-    const users = await AllUsers(UserModel)
-    res
-      .status(201)
-      .json(users)
-  } catch (error) {
-    console.log(error)
-    res
-      .status(500)
-      .json(error)
-  }
-}
+// const getUsers = async (req, res) => {
+//   try {
+//     const UserModel = await userDBService()
+//     const users = await AllUsers(UserModel)
+//     res
+//       .status(201)
+//       .json(users)
+//   } catch (error) {
+//     console.log(error)
+//     res
+//       .status(500)
+//       .json(error)
+//   }
+// }
 
 // const refreshToken = async (req, res) => {
 // }
 
 module.exports = {
-  signUp, signIn, signOut, getUsers,
+  signUp, signIn, signOut,
 }
