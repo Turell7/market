@@ -1,7 +1,12 @@
-
+import { Link } from "react-router-dom"
 
 export function About() {
   return (
-    <div>About</div>
+      <>
+      <div>
+        О компании
+      </div>
+      <Link to='/'>Главная</Link>
+    </>
   )
 }
