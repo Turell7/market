@@ -4,8 +4,10 @@ import style from './styles.module.css'
 export function Main() {
   return (
     <>
-      <h3 className={style.containerMain}>Main</h3>
-      <Outlet />
+      <main className={style.containerMain}>
+        Main
+        <Outlet />
+      </main>
     </>
   )
 }

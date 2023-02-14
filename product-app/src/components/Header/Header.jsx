@@ -13,7 +13,10 @@ export function Header() {
           <li><Link className={styles.Link} to='/help'>Помощь</Link></li>
         </ul>
       </div>
-      <div>
+      <div className={styles.containerHeaderProfile}>
+        <div>Телефон</div>
+        <div>Логотип</div>
+        <div>Кнопка профиля и корзина</div>
       </div>
     </div>
   )
