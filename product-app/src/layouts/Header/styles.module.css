@@ -42,3 +42,31 @@ li:first-child {
   align-items: center;
   justify-content: space-between;
 }
+
+.containerPhone {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgPhone {
+  width: 20px;
+  height: 20px;
+}
+
+.containerProfile {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 25px;
+}
+
+.btn {
+  border-radius: 3px;
+  border: 1px solid #6C6C6C;
+  color: white;
+  background-color: #8FC0AD;
+}
