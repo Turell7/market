@@ -1,4 +1,5 @@
-import { Advertisement } from '../../components/Advertisement/Advertisement'
+
+import { Advertisement } from '../../components/Advertisement'
 import { Catalog } from '../Catalog/Catalog'
 import styles from './styles.module.scss'
 
