@@ -2,7 +2,7 @@ import { Outlet } from 'react-router'
 import './App.css'
 import { Footer } from './layouts/Footer'
 import { Header } from './layouts/Header'
-import { Main} from './components/Main'
+import { Main} from './layouts/Main'
 
 function App() {
 

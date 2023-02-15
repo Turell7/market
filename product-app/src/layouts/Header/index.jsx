@@ -24,7 +24,7 @@ export function Header() {
   const user = localStorage.getItem('user')
 
   return (
-    <div className={styles.containerHeader}>
+    <>
       <div className={styles.containerColor}>
         Блок с городом и ссылками
         <ul className={styles.containerWr}>
@@ -33,6 +33,7 @@ export function Header() {
           <li><Link className={styles.Link} to='/help'>Помощь</Link></li>
         </ul>
       </div>
+      <div className={styles.containerHeader}>
       <div className={styles.containerHeaderProfile}>
         <div className={styles.containerPhone}>
           <img className={styles.imgPhone} src={telephone} alt='Телефон'/>
@@ -48,9 +49,13 @@ export function Header() {
           <button type="button" className={styles.btn} onClick={() => openModal()}>Регистрация</button>
         )}
         </div>
-        <Modal isOpen={isModalOpen} closeHendler={closeModal}>
+        {/* <Modal isOpen={isModalOpen} closeHendler={closeModal}>
+          <FormRegistration closeModal={closeModal} />
+          </Modal> */}
+      </div>
+      <Modal isOpen={isModalOpen} closeHendler={closeModal}>
           <FormRegistration closeModal={closeModal} />
           </Modal>
-      </div>
+    </>
   )
 }
