@@ -4,21 +4,18 @@ import {
 import * as Yup from 'yup'
 import styles from './styles.module.scss'
 
-export function FormRegistration({ closeModal }) {
+export function FormAuthorization({ closeModal }) {
   return (
     <div className={styles.containerModal}>
     <Formik
       initialValues={{
         email: '',
         password: '',
-        name: '',
     }}
     validationSchema={Yup.object({
       email: Yup.string()
         .required('Поле обязательно к заполнению'),
       password: Yup.string()
-        .required('Поле обязательно к заполнению'),
-      name: Yup.string()
         .required('Поле обязательно к заполнению'),
     })}
     onSubmit={(values, { resetForm }) => {
@@ -34,9 +31,7 @@ export function FormRegistration({ closeModal }) {
       <Field className={styles.input} key="password" name="password" type="password" placeholder="Пароль" />
       <ErrorMessage name="password" />
 
-      <Field className={styles.input} key="name" name="name" type="name" placeholder="Имя" />
-      <ErrorMessage name="name" />
-      <button type="submit" className={styles.btnAdd}>Регистрация</button>
+      <button type="submit" className={styles.btnAdd}>Авторизация</button>
     </Form>
     </Formik>
     <button
