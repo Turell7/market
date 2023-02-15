@@ -1,22 +1,47 @@
 .advertisementWr {
     display: grid;
     grid-template-columns: 50% 50%;
-    min-height: 290px;
-    background-color: rgba(43, 209, 209, 0.555);    
+    min-height: 290px; 
 }
 
 .advertisementWrRight {
     display: grid;
     grid-template-rows: 50% 50%;
-    background-color: rgba(209, 206, 43, 0.555);
 }
 
 .advertisementWrRightDown {
     display: grid;
     grid-template-columns: 50% 50%;
-    background-color: rgba(209, 157, 43, 0.555);
 }
 
-.advertisementWrRightDownRight {
-    background-color: rgba(43, 129, 209, 0.555);
+.advertisementWrLeftCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F1;
+    margin-right: 10px;
+}
+
+.advertisementWrRightUpCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F1;
+    margin-bottom: 10px;
+}
+
+.advertisementWrRightDownLeftCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F1;
+    margin-right: 5px;
+}
+
+.advertisementWrRightDownRightCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F1;
+    margin-left: 5px;
 }
