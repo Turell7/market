@@ -49,13 +49,10 @@ export function Header() {
           <button type="button" className={styles.btn} onClick={() => openModal()}>Регистрация</button>
         )}
         </div>
-        {/* <Modal isOpen={isModalOpen} closeHendler={closeModal}>
-          <FormRegistration closeModal={closeModal} />
-          </Modal> */}
       </div>
       <Modal isOpen={isModalOpen} closeHendler={closeModal}>
-          <FormRegistration closeModal={closeModal} />
-          </Modal>
+        <FormRegistration closeModal={closeModal} />
+      </Modal>
     </>
   )
 }
