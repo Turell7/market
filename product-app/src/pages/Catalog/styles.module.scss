@@ -1,4 +1,23 @@
-.advertisement {
-    background-color: rgba(255, 255, 0, 0.623);
-    min-height: 40vh;
+.catalogWr {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    justify-content: center;    
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+}
+
+.buttonNavgWr {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.catalogCardWr {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
 }

@@ -1,5 +1,6 @@
-import { Advertisement } from '../../components/Advertisement/Advertisement'
-import { Catalog } from '../Catalog/Catalog'
+
+import { Advertisement } from '../../components/Advertisement'
+import { Catalog } from '../Catalog'
 import styles from './styles.module.scss'
 
 export function Home() {

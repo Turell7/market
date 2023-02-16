@@ -17,6 +17,7 @@ const ProductModel = sequelize.define('product', {
   },
   description: {
     type: Sequelize.TEXT,
+    defaultValue: 'Default description',
   },
   stock: {
     type: Sequelize.INTEGER,
@@ -27,10 +28,11 @@ const ProductModel = sequelize.define('product', {
     defaultValue: 0,
   },
   category: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
   picture: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.TEXT,
+    defaultValue: 'https://cdns.iconmonstr.com/wp-content/releases/preview/2019/240/iconmonstr-product-3.png',
   },
 
 })
