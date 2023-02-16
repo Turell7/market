@@ -1,18 +1,18 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './styles.module.css'
 import telephone from '../../assets/telephone-handle-silhouette_icon-icons.com_73380.svg'
 import cart from '../../assets/basket_96252.svg'
 import profile from '../../assets/4092564-about-mobile-ui-profile-ui-user-website_114033.svg'
 import { useState } from 'react'
-import { Modal } from '../ModalRegistration'
+import { Modal } from '../Modal'
 import { FormRegistration } from '../FormRegistration'
+import { FormAuthorization } from '../FormAuthorization'
 
 
 export function Header() {
-
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const navigate = useNavigate()
 
-  
   const openModal = () => {
     setIsModalOpen(true)
   }
@@ -40,18 +40,24 @@ export function Header() {
           +7(999)-99-99-99
         </div>
         <div className={styles.containerLogo}>Логотип</div>
-        {user ? (
+        {/* {user ? ( */}
           <div className={styles.containerProfile}>
-          <img src={profile} className={styles.imgPhone} alt='Профиль' />
-          <img src={cart} className={styles.imgPhone} alt='Корзина' />
+          <img src={profile} onClick={() => navigate('/user')} className={styles.img} alt='Профиль' />
+          <img src={cart} className={styles.img} alt='Корзина' />
         </div>
-        ) : (
-          <button type="button" className={styles.btn} onClick={() => openModal()}>Регистрация</button>
-        )}
+        {/* ) : ( */}
+          <button type="button" className={styles.btn} onClick={() => openModal()}>Войти</button>
+        {/* )} */}
         </div>
       </div>
       <Modal isOpen={isModalOpen} closeHendler={closeModal}>
-        <FormRegistration closeModal={closeModal} />
+        {user ?
+          <FormAuthorization closeModal={closeModal} />
+        :
+          <FormRegistration closeModal={closeModal} />
+        }
+        {/* <FormRegistration closeModal={closeModal} /> */}
+        {/* <FormAuthorization closeModal={closeModal} /> */}
       </Modal>
     </>
   )

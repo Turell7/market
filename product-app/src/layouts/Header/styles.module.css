@@ -52,6 +52,12 @@ li:first-child {
   height: 20px;
 }
 
+.img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
 .containerProfile {
   display: flex;
   flex-direction: row;
