@@ -1,5 +1,6 @@
 import { Box, Skeleton } from '@mui/material'
 import { useQuery } from '@tanstack/react-query'
+import { Outlet } from 'react-router-dom'
 import { api } from '../../Api'
 import { TableProducts } from '../../components/TableProducts'
 import { PRODUCTS_QUERY_KEY } from '../../tools/queryKeys'
@@ -29,6 +30,9 @@ export function Products() {
 
   const products = data.data
   return (
-    <TableProducts products={products} />
+    <>
+      <Outlet />
+      <TableProducts products={products} />
+    </>
   )
 }
