@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router-dom"
 import App from "../App"
-import { User } from "../layouts/User"
+import { User } from "../pages/User"
 import { About } from "../pages/About"
 import { Contacts } from "../pages/Contacts"
 import { Help } from "../pages/Help"

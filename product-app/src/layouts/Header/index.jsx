@@ -40,14 +40,14 @@ export function Header() {
           +7(999)-99-99-99
         </div>
         <div className={styles.containerLogo}>Логотип</div>
-        {user ? (
+        {/* {user ? ( */}
           <div className={styles.containerProfile}>
-          <img src={profile} onClick={() => navigate('/user')} className={styles.imgPhone} alt='Профиль' />
-          <img src={cart} className={styles.imgPhone} alt='Корзина' />
+          <img src={profile} onClick={() => navigate('/user')} className={styles.img} alt='Профиль' />
+          <img src={cart} className={styles.img} alt='Корзина' />
         </div>
-        ) : (
+        {/* ) : ( */}
           <button type="button" className={styles.btn} onClick={() => openModal()}>Войти</button>
-        )}
+        {/* )} */}
         </div>
       </div>
       <Modal isOpen={isModalOpen} closeHendler={closeModal}>
