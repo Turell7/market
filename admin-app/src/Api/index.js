@@ -1,25 +1,47 @@
 import axios from 'axios'
+import { getUserToken } from '../tools/utils'
 
 class Api {
-  constructor() {
-    this.path = 'http://localhost:3050/api/v0.1'
+  constructor(path) {
+    this.path = path
+    this.headers = { 'Content-Type': 'application/json' }
+    this.token = getUserToken()
+    this.authInstance = this.token ? axios.create({
+      headers: {
+        authorization: `Bearer ${this.token}`,
+        'Content-Type': 'application/json',
+      },
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity,
+      baseURL: this.path,
+    }) : null
   }
 
   getAllProducts() {
-    return axios.get(`${this.path}/products`)
+    return this.authInstance.get('/products')
   }
 
   getProductById(id) {
-    return axios.get(`${this.path}/products/${id}`)
+    return this.authInstance(`/products/${id}`)
+  }
+
+  signUp(signUpData) {
+    return axios.post(`${this.path}/signup`, signUpData)
+  }
+
+  signIn(signInData) {
+    return axios.post(`${this.path}/signin`, signInData)
   }
 
   createProduct(productData) {
-    return axios.post(`${this.path}/products`, JSON.stringify(productData))
+    return this.authInstance.post('/products', JSON.stringify(productData))
   }
 }
 
-const api = new Api()
+const api = new Api('http://localhost:3050/api/v0.1')
+const adminApi = new Api('http://localhost:3050/api/v0.1/admin')
 
 export {
   api,
+  adminApi,
 }

@@ -1,0 +1,47 @@
+.advertisementWr {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    min-height: 290px; 
+}
+
+.advertisementWrRight {
+    display: grid;
+    grid-template-rows: 50% 50%;
+}
+
+.advertisementWrRightDown {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+.advertisementWrLeftCard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F1;
+    margin-right: 10px;
+}
+
+.advertisementWrRightUpCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F1;
+    margin-bottom: 10px;
+}
+
+.advertisementWrRightDownLeftCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F1;
+    margin-right: 5px;
+}
+
+.advertisementWrRightDownRightCard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F1;
+    margin-left: 5px;
+}
