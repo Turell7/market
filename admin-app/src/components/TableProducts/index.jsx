@@ -1,5 +1,9 @@
-import { useNavigate } from 'react-router-dom'
+import { Box, Skeleton } from '@mui/material'
+import { useQuery } from '@tanstack/react-query'
+import { useSelector } from 'react-redux'
 import { CustomTable } from '../CustomTable'
+import { api } from '../../Api'
+import { PRODUCTS_QUERY_KEY } from '../../tools/queryKeys'
 
 const headCells = [
   {
@@ -34,8 +38,28 @@ const headCells = [
   },
 ]
 
-export function TableProducts({ products }) {
-  const navigate = useNavigate()
-  const addItem = () => navigate('/products/create')
-  return <CustomTable headCells={headCells} rows={products} addItem={addItem} />
+export function TableProducts({ setIsAddItem }) {
+  const { user } = useSelector((store) => store.user.user)
+
+  const { data, isLoading, isFetching } = useQuery({
+    queryKey: PRODUCTS_QUERY_KEY.concat(user),
+    queryFn: () => api.getAllProducts(),
+  })
+
+  if (isLoading || isFetching) {
+    return (
+      <Box sx={{ width: 640 }}>
+        <Skeleton sx={{ height: 100 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton sx={{ height: 80 }} animation="wave" />
+        <Skeleton variant="text" />
+      </Box>
+    )
+  }
+
+  const products = data.data
+  return <CustomTable headCells={headCells} rows={products} setIsAddItem={setIsAddItem} />
 }

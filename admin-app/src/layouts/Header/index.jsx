@@ -85,7 +85,6 @@ export function Header({ open, handleDrawerOpen, AppBar }) {
           Market - Admin Panel
         </Typography>
         {userMenu()}
-
       </Toolbar>
     </AppBar>
   )
