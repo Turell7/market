@@ -2,6 +2,7 @@ import { Link } from "react-router-dom"
 import images from '../../assets/456212.png'
 import styles from './styles.module.scss'
 
+
 export function User() {
   return (
     <>
