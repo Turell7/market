@@ -1,10 +1,37 @@
+import { useMutation } from '@tanstack/react-query'
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik'
+import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 import * as Yup from 'yup'
+import { adminApi } from '../../../Api'
+import { queryClient } from '../../main'
+import { addUser } from '../../redux/slices/userSlices/userSlice/userSlices'
 import styles from './styles.module.scss'
 
-export function FormAuthorization({ closeModal }) {
+const USER_SIGN_IN = ['USER_SIGN_IN']
+
+export function FormAuthorization({ closeModal, change }) {
+  const dispatch = useDispatch()
+
+  const getSignIn = (email, password) => adminApi.signIn(email, password)
+
+  const { mutateAsync } = useMutation({
+    mutationFn: (values) => getSignIn(values.email, values.password),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: USER_SIGN_IN })
+    }
+  })
+
+  const userToken = async (email, password) => {
+    const data
+    = await mutateAsync(email,password)
+    closeModal()
+    dispatch(addUser(data.data.accessToken))
+  }
+
+
   return (
     <div className={styles.containerModal}>
     <Formik
@@ -19,6 +46,7 @@ export function FormAuthorization({ closeModal }) {
         .required('Поле обязательно к заполнению'),
     })}
     onSubmit={(values, { resetForm }) => {
+      userToken(values)
       resetForm()
     }}
     >
@@ -32,6 +60,7 @@ export function FormAuthorization({ closeModal }) {
       <ErrorMessage name="password" />
 
       <button type="submit" className={styles.btnAdd}>Авторизация</button>
+      <button className={styles.btnAdd} type="button" onClick={() => {change(prev => !prev)}}>Зарегистрироваться</button>
     </Form>
     </Formik>
     <button
