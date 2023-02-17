@@ -71,4 +71,5 @@ li:first-child {
   border: 1px solid #6C6C6C;
   color: white;
   background-color: #8FC0AD;
+  cursor: pointer;
 }
