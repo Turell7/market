@@ -25,6 +25,14 @@ class Api {
     return this.authInstance(`/products/${id}`)
   }
 
+  signUp(signUpData) {
+    return axios.post(`${this.path}/signup`, signUpData)
+  }
+
+  signIn(signInData) {
+    return axios.post(`${this.path}/signin`, signInData)
+  }
+
   createProduct(productData) {
     return this.authInstance.post('/products', JSON.stringify(productData))
   }

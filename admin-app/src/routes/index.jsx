@@ -6,6 +6,7 @@ import { Products } from '../pages/Products'
 import { Users } from '../pages/Users'
 import { Profile } from '../pages/Profile'
 import { CreateProduct } from '../components/CreateProduct'
+import { Authorization } from '../pages/Authorisation'
 
 export const router = createBrowserRouter([
   {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
       {
         path: '',
         element: <Main />,
+      },
+      {
+        path: 'authorization/',
+        element: <Authorization />,
       },
       {
         path: 'profile',
