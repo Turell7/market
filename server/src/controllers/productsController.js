@@ -2,16 +2,18 @@
 //   AllProducts, NewProduct, ProductById, deleteProduct, updateProduct,
 // } = require('../models/productModel')
 const { ProductModel } = require('../models/productModel')
+const { ImageModel } = require('../models/imageModel')
 const productValidator = require('../validators/productValidator')
 const { getPreparedErrorsFromYup } = require('../validators/utils')
 
 const getAllProducts = async (req, res) => {
   try {
-    const allProductsObj = await ProductModel.findAll({ raw: true })
+    const allProductsObj = await ProductModel.findAll({ include: ImageModel })
     res
       .status(200)
       .json(allProductsObj)
   } catch (error) {
+    console.log(error)
     res.sendStatus(500)
   }
 }
@@ -26,10 +28,14 @@ const createNewProduct = async (req, res) => {
     return
   }
   try {
-    const newProductObj = await ProductModel.create(req.body)
+    const { images, ...productReq } = req.body
+    const newProductFromDB = await ProductModel.create(productReq)
+    const promisMass = images.map((elem) => newProductFromDB.createImage({ image: elem }))
+    const result = await Promise.all(promisMass)
+    console.log(result)
     res
       .status(201)
-      .json(newProductObj)
+      .json({ ...newProductFromDB.dataValues, images: result })
   } catch (error) {
     console.log(error)
     res.sendStatus(500)

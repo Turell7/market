@@ -1,6 +1,7 @@
 // Определение модели продукта
 const Sequelize = require('sequelize')
 const { sequelize } = require('./index')
+const { ImageModel } = require('./imageModel')
 
 const ProductModel = sequelize.define('product', {
   name: {
@@ -30,11 +31,11 @@ const ProductModel = sequelize.define('product', {
   category: {
     type: Sequelize.STRING,
   },
-  picture: {
+  image: {
     type: Sequelize.TEXT,
     defaultValue: 'https://cdns.iconmonstr.com/wp-content/releases/preview/2019/240/iconmonstr-product-3.png',
   },
-
 })
+ProductModel.hasMany(ImageModel, { onDelete: 'cascade' })
 
 module.exports = { ProductModel }
