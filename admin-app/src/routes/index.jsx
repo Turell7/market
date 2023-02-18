@@ -5,6 +5,7 @@ import { Main } from '../pages/Main'
 import { Products } from '../pages/Products'
 import { Users } from '../pages/Users'
 import { Profile } from '../pages/Profile'
+import { CreateProduct } from '../components/CreateProduct'
 
 export const router = createBrowserRouter([
   {
@@ -24,8 +25,14 @@ export const router = createBrowserRouter([
         element: <Users />,
       },
       {
-        path: 'products',
+        path: 'products/',
         element: <Products />,
+        children: [
+          {
+            path: 'create',
+            element: <CreateProduct />,
+          },
+        ],
       },
       {
         path: 'categories',
