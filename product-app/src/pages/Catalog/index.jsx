@@ -11,9 +11,9 @@ export function Catalog() {
             <h2>Каталог</h2>
           </div>
           <div className={styles.buttonNavgWr}>
-            <div>Кнопка1</div>
-            <div>Кнопка2</div>
-            <div>Кнопка3</div>
+            <button>НОВИНКИ</button>
+            <button>ХИТ СЕЗОНА</button>
+            <button>ПОПУЛЯРНОЕ</button>
           </div>
           <div className={styles.catalogCardWr}>
           {DataProducts.map((el) => (<ProductCard key={crypto.randomUUID()} {...el} />))}
