@@ -8,7 +8,7 @@ import {
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 export function TableToolbar(props) {
-  const { numSelected, addItem } = props
+  const { numSelected, setIsAddItem } = props
 
   return (
     <Toolbar
@@ -59,7 +59,7 @@ export function TableToolbar(props) {
             </IconButton>
           </Tooltip>
           <Tooltip title="Add product">
-            <IconButton onClick={addItem}>
+            <IconButton onClick={() => { setIsAddItem((prev) => !prev) }}>
               <AddCircleOutlineIcon />
             </IconButton>
           </Tooltip>
