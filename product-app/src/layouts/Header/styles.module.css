@@ -45,17 +45,26 @@ li:first-child {
   gap: 10px;
   justify-content: center;
   align-items: center;
+  font-weight: 600;
+  opacity: 0.8;  
 }
 
 .imgPhone {
   width: 20px;
   height: 20px;
+  opacity: 0.8;
 }
 
 .img {
   width: 20px;
   height: 20px;
   cursor: pointer;
+}
+
+.containerLogo{
+  font-weight: 600;
+  font-size: 24px;
+  opacity: 0.7;
 }
 
 .containerProfile {
@@ -67,9 +76,12 @@ li:first-child {
 }
 
 .btn {
-  border-radius: 3px;
-  border: 1px solid #6C6C6C;
+  border-radius: 5px;
+  border: 1px solid #F0F2F1;
   color: white;
   background-color: #8FC0AD;
   cursor: pointer;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 3px 5px;
 }

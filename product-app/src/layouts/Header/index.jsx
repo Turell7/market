@@ -44,9 +44,9 @@ export function Header() {
       <div className={styles.containerHeaderProfile}>
         <div className={styles.containerPhone}>
           <img className={styles.imgPhone} src={telephone} alt='Телефон'/>
-          +7(999)-99-99-99
+          +7 (999) 99 99 99
         </div>
-        <div className={styles.containerLogo}>Логотип</div>
+        <div className={styles.containerLogo}>The Best Brand House</div>
         {userToken? ( 
           <div className={styles.containerProfile}>
           <img src={profile} onClick={() => navigate('/user')} className={styles.img} alt='Профиль' />

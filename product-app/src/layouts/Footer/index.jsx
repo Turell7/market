@@ -3,7 +3,7 @@ import style from './styles.module.scss'
 export function Footer() {
   return (
     <div className={style.containerFooter}>
-      Подвал сайта
+       © 2023 The best dev team
     </div>
   )
 }
