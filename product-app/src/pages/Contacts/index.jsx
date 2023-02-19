@@ -5,7 +5,7 @@ export function Contacts() {
   return (
     <>
       <h3 className={styles.containerContacts}>Контакты</h3>
-      <Link to='/'>Главная</Link>
+      <Link to='/' className={styles.link}>Главная</Link>
     </>
   )
 }

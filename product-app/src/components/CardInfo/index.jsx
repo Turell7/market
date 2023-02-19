@@ -1,19 +1,22 @@
-import { useNavigate } from 'react-router-dom'
 import styles from './styles.module.scss'
 import backgroundImg from '../../assets/background.jpg'
 
-export function ProductCard() {
+export function CardInfo() {
 
-  const navigate = useNavigate() 
-  const cardInfo = () => navigate(`/cardinfo`) // Функция по клику совершает (navigate) на страницу карточки
+const basketQuantity = () => {
+  console.log("В корзину")
+}
 
   return (
-      <div className={styles.productCardWr}>
+      <div className={styles.CardInfoWr}>
         <div className={styles.CardWr}>
-              <div className={styles.imgWr} role="presentation" onClick={cardInfo}>
+          <div className={styles.imgBorder}>
+              <div className={styles.imgWr}>
                   {/* <img src={backgroundImg} /> Используем картинку как "img"*/}
                   <img style={{ backgroundImage: 'url(' + backgroundImg + ')'}} /*Используем картинку как "backgroundImage" *//>
                 </div>
+            </div>
+            <div className={styles.textBorder}>
               <div className={styles.textWr}>
                 <p>Название товара</p>
                 <p className={styles.rating}>
@@ -24,7 +27,19 @@ export function ProductCard() {
                   <span className={styles.starTrue}><i className="fas fa-star"></i></span>
                 </p>
                 <p>Цена</p>
+              <button type="button" onClick={basketQuantity} className={styles.btn}>
+                  <span>
+                    <i className="fa-solid fa-basket-shopping" />
+                    В корзину
+                  </span>
+                </button>
               </div>
+            </div>
+        </div>
+        <div className={styles.descriptionWr}>
+          <div className={styles.descriptionBorder}>
+            Описание товара            
+          </div>
         </div>     
     </div>
   )

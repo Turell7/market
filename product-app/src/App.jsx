@@ -17,6 +17,7 @@ function App() {
             </div>
           </Main>
         <Footer />
+      </div>
         <ToastContainer
           position="top-right"
           autoClose={5000}
@@ -29,7 +30,6 @@ function App() {
           pauseOnHover
           theme="colored"
       />
-      </div>
     </>
   )
 }

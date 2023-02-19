@@ -5,6 +5,7 @@ import { About } from "../pages/About"
 import { Contacts } from "../pages/Contacts"
 import { Help } from "../pages/Help"
 import { Home } from "../pages/Home"
+import { CardInfo } from "../components/CardInfo"
 
 export const router = createBrowserRouter([
     {
@@ -30,6 +31,10 @@ export const router = createBrowserRouter([
         {
           path: '/user',
           element: <User />
+        },
+        {
+          path: '/cardinfo',
+          element: <CardInfo />
         },
       ]
     },
