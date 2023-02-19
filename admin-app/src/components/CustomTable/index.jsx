@@ -38,7 +38,7 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0])
 }
 
-export function CustomTable({ headCells, rows, addItem }) {
+export function CustomTable({ headCells, rows, setIsAddItem }) {
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('price')
   const [selected, setSelected] = React.useState([])
@@ -102,7 +102,7 @@ export function CustomTable({ headCells, rows, addItem }) {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <TableToolbar numSelected={selected.length} addItem={addItem} />
+        <TableToolbar numSelected={selected.length} setIsAddItem={setIsAddItem} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
