@@ -1,0 +1,131 @@
+.CardInfoWr {
+    margin-top: 20px;
+    min-width: 600px;
+}
+
+.CardWr {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+@media (max-width: 900px) {
+    .CardWr {
+        grid-template-columns: auto;
+     }      
+}
+
+.imgBorder{
+    background-color: #F0F2F1;
+    padding: 5px 5px;
+    margin-right: 5px;
+}
+
+@media (max-width: 900px) {
+    .imgBorder {
+        margin-right: 0;
+     }      
+}
+
+.imgWr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F2F1;
+    padding: 10px 10px;  
+    border: 2px solid white; 
+}
+
+.imgWr>img {
+    min-height: 350px;
+    min-width: 265px;
+    max-width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border: 2px solid white;
+}
+
+.textBorder{
+    background-color: #F0F2F1;
+    padding: 5px 5px;
+    margin-left: 5px;
+}
+
+@media (max-width: 900px) {
+    .textBorder {
+        margin-top: 10px;
+        margin-left: 0;
+     }      
+}
+
+.textWr {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    opacity: 0.8;
+    background-color: #F0F2F1;
+    border: 2px solid white; 
+    height: 99%;
+}
+
+.starTrue{
+    color: yellow;
+}
+
+.rating {
+    margin: 0;
+}
+
+.rating>span {
+    margin: 0px 3px;
+}
+
+.btn {
+    padding: 10px 3px;
+    border: none;
+    color: rgb(255, 255, 255);
+    background-color: #8FC0AD;
+    border-radius: 3px;
+    font-weight: 400;
+    font-size: 16px;
+    border: 1px solid white;
+    margin-bottom: 20px;
+}
+
+.btn>span {
+    border: 1px solid white;
+    padding: 6px 12px;
+}
+
+
+.btn:hover {
+    box-shadow: 0px 0px 3px 0.1px rgba(0, 0, 0, 0.527);
+}
+
+.btn:active {
+    background-color: #6c6c6c;
+}
+
+.btn  i {
+    margin-right: 10px;
+}
+
+.descriptionWr {
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: #F0F2F1;
+    padding: 5px 5px;
+}
+
+.descriptionBorder{
+    border: 2px solid white; 
+    height: 100%;
+    font-weight: 400;
+    opacity: 0.9;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: center;
+    min-height: 50px; 
+}

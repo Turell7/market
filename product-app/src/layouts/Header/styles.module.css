@@ -62,9 +62,16 @@ li:first-child {
 }
 
 .containerLogo{
+  text-decoration: inherit; 
+  color: inherit; 
   font-weight: 600;
   font-size: 24px;
   opacity: 0.7;
+}
+
+.containerLogo>i {
+  margin-right: 15px;
+  font-size: 25px;
 }
 
 .containerProfile {
@@ -76,7 +83,7 @@ li:first-child {
 }
 
 .btn {
-  border-radius: 5px;
+  border-radius: 3px;
   border: 1px solid #F0F2F1;
   color: white;
   background-color: #8FC0AD;

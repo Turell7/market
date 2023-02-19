@@ -1,10 +1,14 @@
 .containerFooter {
   color: white;
   background-color: #8FC0AD;
-  max-width: 100%;
   position: sticky;
   flex-shrink: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.containerFooter>a {
+  color: inherit; 
+  text-decoration: inherit; 
 }
