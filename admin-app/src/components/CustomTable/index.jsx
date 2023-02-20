@@ -38,7 +38,7 @@ function stableSort(array, comparator) {
   return stabilizedThis.map((el) => el[0])
 }
 
-export function CustomTable({ headCells, rows, addItem }) {
+export function CustomTable({ headCells, rows }) {
   const [order, setOrder] = React.useState('asc')
   const [orderBy, setOrderBy] = React.useState('price')
   const [selected, setSelected] = React.useState([])
@@ -102,7 +102,7 @@ export function CustomTable({ headCells, rows, addItem }) {
   return (
     <Box sx={{ width: '100%' }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <TableToolbar numSelected={selected.length} addItem={addItem} />
+        <TableToolbar numSelected={selected.length} />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -124,17 +124,17 @@ export function CustomTable({ headCells, rows, addItem }) {
                 .map((row, index) => {
                   const dateCreated = new Date(row.createdAt).toLocaleString('en-GB', { timeZone: 'UTC' })
                   const dateUpdated = new Date(row.createdAt).toLocaleString('en-GB', { timeZone: 'UTC' })
-                  const isItemSelected = isSelected(row.id)
+                  const isItemSelected = isSelected(row.name)
                   const labelId = `enhanced-table-checkbox-${index}`
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.id)}
+                      onClick={(event) => handleClick(event, row.name)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.id}
+                      key={row.name}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -145,17 +145,6 @@ export function CustomTable({ headCells, rows, addItem }) {
                             'aria-labelledby': labelId,
                           }}
                         />
-                      </TableCell>
-                      <TableCell>
-                        <img
-                          src={row.picture}
-                          alt="product"
-                          style={{
-                            maxHeight: 100,
-                            mahWidth: 200,
-                          }}
-                        />
-
                       </TableCell>
                       <TableCell
                         component="th"

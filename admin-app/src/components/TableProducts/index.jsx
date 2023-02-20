@@ -1,13 +1,6 @@
-import { useNavigate } from 'react-router-dom'
 import { CustomTable } from '../CustomTable'
 
-const headCells = [
-  {
-    id: 'picture',
-    numeric: false,
-    disablePadding: false,
-    label: 'picture',
-  },
+export const headCells = [
   {
     id: 'name',
     numeric: false,
@@ -35,7 +28,5 @@ const headCells = [
 ]
 
 export function TableProducts({ products }) {
-  const navigate = useNavigate()
-  const addItem = () => navigate('/products/create')
-  return <CustomTable headCells={headCells} rows={products} addItem={addItem} />
+  return <CustomTable headCells={headCells} rows={products} />
 }

@@ -1,20 +1,26 @@
 const bcrypt = require('bcrypt')
 const { v4: uuidv4 } = require('uuid')
 const jwtService = require('./jwtService')
-
-const { UserModel } = require('../models/userModel')
+const { userDBService } = require('./DBServices/userDBService')
+const {
+  NewUser, AllUsers, UpdateUserByEmail, UpdateUserByID,
+} = require('../models/userModel')
 
 const checkEmailUnique = async (email) => {
   console.log(email)
-  const allUsers = await UserModel.findAll({ raw: true })
-  return !allUsers.some((user) => user.email.toLowerCase() === email.toLowerCase())
+  const UserModel = await userDBService()
+  const users = await AllUsers(UserModel)
+  return !users.some((user) => user.email.toLowerCase() === email.toLowerCase())
 }
 
 const createUser = async (userObj) => {
+  // const db = await getParsedDB()
+
   const hashPassword = await bcrypt.hash(
     userObj.password,
     10,
   )
+
   const preparedUser = {
     id: uuidv4(),
     avatar: '123',
@@ -22,56 +28,54 @@ const createUser = async (userObj) => {
     ...userObj,
   }
 
-  const newRefreshToken = jwtService.createRefreshToken({ id: preparedUser.id })
+  const accessToken = jwtService.createAccessToken({ id: preparedUser.id })
+  const refreshToken = jwtService.createRefreshToken({ id: preparedUser.id })
 
-  const newUserFromDB = await UserModel.create({
-    id: preparedUser.id,
-    name: userObj.name,
+  const UserModel = await userDBService()
+  const newUser = await NewUser(UserModel, {
+    ...preparedUser,
     password: hashPassword,
-    about: userObj.about,
-    avatar: userObj.avatar,
-    email: userObj.email,
-    refreshToken: newRefreshToken,
-
+    refreshToken,
   })
-  const { password, refreshToken, ...returnedUserFromDB } = newUserFromDB.dataValues
+  const { password, ...returnedUserFromDB } = newUser.dataValues
   return {
     ...returnedUserFromDB,
+    accessToken,
   }
 }
-
 const authenticateUser = async (userObj) => {
-  const allUsers = await UserModel.findAll({ raw: true })
+  const UserModel = await userDBService()
+  const users = await AllUsers(UserModel)
 
-  const findedInDBUser = allUsers.find(
+  const currentUser = users.find(
     (user) => user.email.toLowerCase() === userObj.email.toLowerCase(),
   )
 
-  if (!findedInDBUser || !(await bcrypt.compare(userObj.password, findedInDBUser.password))) { throw new Error('Email or password incorrect') }
+  if (
+    !currentUser
+    || !(await bcrypt.compare(userObj.password, currentUser.password))
+  ) { throw new Error('Email or password incorrect') }
 
-  const accessToken = jwtService.createAccessToken({ id: findedInDBUser.id })
-  const refreshToken = jwtService.createRefreshToken({ id: findedInDBUser.id })
+  const accessToken = jwtService.createAccessToken({ id: currentUser.id })
+  const refreshToken = jwtService.createRefreshToken({ id: currentUser.id })
 
-  findedInDBUser.refreshToken = refreshToken
-  const { email } = findedInDBUser
-  await UserModel.update(findedInDBUser, {
-    where: { email: [email] },
-  })
+  currentUser.refreshToken = refreshToken
+  await UpdateUserByEmail(UserModel, currentUser)
 
-  const { password, ...restFindedInDBUser } = findedInDBUser
+  // await updateDB(db)
+
+  const { password, ...restCurrentUser } = currentUser
 
   return {
-    ...restFindedInDBUser,
+    ...restCurrentUser,
     accessToken,
   }
 }
 
 const signOut = async (userId) => {
-  const { id } = userId
-  const preparedUser = { id, refreshToken: '' }
-  await UserModel.update(preparedUser, {
-    where: { id: [id] },
-  })
+  const preparedUser = { id: userId, refreshToken: '' }
+  const UserModel = await userDBService()
+  await UpdateUserByID(UserModel, preparedUser)
 }
 module.exports = {
   checkEmailUnique, createUser, authenticateUser, signOut,
