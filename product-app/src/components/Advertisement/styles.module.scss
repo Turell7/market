@@ -1,0 +1,112 @@
+.advertisementWr {
+    display: grid;
+    grid-template-columns: 50% 50%;
+    min-height: 450px; 
+}
+
+@media (max-width: 900px) {
+    .advertisementWr {
+        grid-template-columns: auto;
+     }      
+}
+
+.advertisementWrRight {
+    display: grid;
+    grid-template-rows: 50% 50%;
+    margin-left: 5px;
+}
+
+@media (max-width: 900px) {
+    .advertisementWrRight {
+        margin-left: 0px;
+        margin-top: 10px;
+     }      
+}
+
+.advertisementWrRightDown {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+
+@media (max-width: 900px) {
+    .advertisementWrLeftCard {
+        margin-right: 0px;
+     }      
+}
+
+.WrLeftCard{
+    margin-right: 5px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.WrLeftCard:hover{
+opacity: 0.8;
+}
+
+.WrRightUpCard {
+    margin-bottom: 10px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.WrRightUpCard:hover{
+    opacity: 0.8;
+}    
+
+.WrRightDownLeftCard {
+    margin-right: 5px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.WrRightDownLeftCard:hover{
+    opacity: 0.8;
+}
+    
+.WrRightDownRightCard {
+    margin-left: 5px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.WrRightDownRightCard:hover{
+    opacity: 0.8;
+}
+
+.textLeftCard {
+    display: grid;
+    grid-template-columns: 25% auto;
+    padding: 0px 35px;
+    font-weight: 600;
+    font-size: 26px;
+    opacity: 0.8;
+}
+
+.textRightUpCard {
+    display: grid;
+    grid-template-columns: 25% auto;
+    margin-left: 20px;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.textRightDownLeftCard {
+    display: grid;
+    grid-template-columns: 25% auto;
+    margin-left: 20px;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.textRightDownRightCard {
+    display: grid;
+    grid-template-columns: 25% auto;
+    margin-left: 20px;
+    font-weight: 600;
+    opacity: 0.8;
+}

@@ -1,0 +1,46 @@
+.catalogWr {
+    display: grid;
+    grid-template-rows: auto auto auto;
+    justify-content: center;    
+}
+
+.heading {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    opacity: 0.8;
+}
+
+.buttonNavgWr {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.buttonNavgWr>button {
+    border: none;
+    color: inherit;
+    background-color: transparent;
+    font-weight: 600;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.catalogCardWr {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+@media (max-width: 1260px) {
+    .catalogCardWr {
+        grid-template-columns: repeat(3, 1fr);
+     }      
+}
+
+@media (max-width: 900px) {
+    .catalogCardWr {
+        grid-template-columns: repeat(2, 1fr);
+     }      
+}

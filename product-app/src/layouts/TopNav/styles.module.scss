@@ -1,0 +1,18 @@
+.containerCategoty {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  gap: 15px;
+  padding: 15px;
+  border-bottom: 2px solid #F0F2F1;
+  cursor: pointer;
+
+  .container {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    font-weight: 600;
+    opacity: 0.8;
+  }
+}
