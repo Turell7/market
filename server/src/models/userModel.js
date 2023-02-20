@@ -1,43 +1,42 @@
-// Определение модели пользователя
-const Sequelize = require('sequelize')
-const { sequelize } = require('./index')
+// Получение всех пользователей -------------------------------------------------------
+const AllUsers = async (User) => {
+  const users = await User.findAll({ raw: true })
+  return users
+}
 
-const UserModel = sequelize.define('user', {
-  id: {
-    type: Sequelize.STRING,
-    allowNull: false,
-    primaryKey: true,
-  },
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  last_name: {
-    type: Sequelize.STRING,
-  },
-  password: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  avatar: {
-    type: Sequelize.TEXT,
-    defaultValue: 'https://www.seekpng.com/png/detail/514-5147412_default-avatar-icon.png',
-  },
-  about: {
-    type: Sequelize.TEXT,
-  },
-  email: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  refreshToken: {
-    type: Sequelize.STRING,
-    allowNull: false,
-  },
-  role: {
-    type: Sequelize.STRING,
-    defaultValue: 'user',
-  },
-})
-
-module.exports = { UserModel }
+// Добавление нового пользователя-------------------------------------------------------
+const NewUser = async (UserModel, newUser) => {
+  const newUserFromDB = await UserModel.create({
+    id: newUser.id,
+    name: newUser.name,
+    password: newUser.password,
+    about: newUser.about,
+    avatar: newUser.avatar,
+    email: newUser.email,
+    refreshToken: newUser.refreshToken,
+  })
+  return newUserFromDB
+}
+// Обновление пользователя по Email-------------------------------------------------------
+const UpdateUserByEmail = async (UserModel, userData) => {
+  const { email } = userData
+  const result = await UserModel.update(userData, {
+    where: {
+      email: [email],
+    },
+  })
+  return result
+}
+// Обновление пользователя по ID-------------------------------------------------------
+const UpdateUserByID = async (UserModel, userData) => {
+  const { id } = userData
+  const result = await UserModel.update(userData, {
+    where: {
+      id: [id],
+    },
+  })
+  return result
+}
+module.exports = {
+  AllUsers, NewUser, UpdateUserByEmail, UpdateUserByID,
+}

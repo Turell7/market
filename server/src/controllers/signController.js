@@ -1,16 +1,8 @@
+const { AllUsers } = require('../models/userModel')
+const { userDBService } = require('../services/DBServices/userDBService')
 const authService = require('../services/authService')
-const authValidator = require('../validators/authValidator')
-const { getPreparedErrorsFromYup } = require('../validators/utils')
 
 const signUp = async (req, res) => {
-  try {
-    await authValidator.signUpSchema.validate(req.body, { abortEarly: false })
-  } catch (error) {
-    res
-      .status(400)
-      .json(getPreparedErrorsFromYup(error))
-    return
-  }
   try {
     if (await authService.checkEmailUnique(req.body.email)) {
       const createUser = await authService.createUser(req.body)
@@ -22,6 +14,7 @@ const signUp = async (req, res) => {
     res
       .status(400)
       .json({ error: 'This email is already used' })
+    return
   } catch (error) {
     console.log(error)
     res
@@ -32,26 +25,15 @@ const signUp = async (req, res) => {
 
 const signIn = async (req, res) => {
   try {
-    await authValidator.signInSchema.validate(req.body, { abortEarly: false })
-  } catch (error) {
-    res
-      .status(400)
-      .json(getPreparedErrorsFromYup(error))
-    return
-  }
-  try {
     try {
       const authenticatedUser = await authService.authenticateUser(req.body)
-      res
-        .status(200)
-        .json(authenticatedUser)
+      return res.json(authenticatedUser)
     } catch (error) {
-      res.status(400).send(error.message)
-      return
+      return res.status(400).send(error.message)
     }
   } catch (error) {
     console.log(error)
-    res.sendStatus(500)
+    return res.sendStatus(500)
   }
 }
 
@@ -65,24 +47,24 @@ const signOut = async (req, res) => {
   }
 }
 
-// const getUsers = async (req, res) => {
-//   try {
-//     const UserModel = await userDBService()
-//     const users = await AllUsers(UserModel)
-//     res
-//       .status(201)
-//       .json(users)
-//   } catch (error) {
-//     console.log(error)
-//     res
-//       .status(500)
-//       .json(error)
-//   }
-// }
+const getUsers = async (req, res) => {
+  try {
+    const UserModel = await userDBService()
+    const users = await AllUsers(UserModel)
+    res
+      .status(201)
+      .json(users)
+  } catch (error) {
+    console.log(error)
+    res
+      .status(500)
+      .json(error)
+  }
+}
 
 // const refreshToken = async (req, res) => {
 // }
 
 module.exports = {
-  signUp, signIn, signOut,
+  signUp, signIn, signOut, getUsers,
 }

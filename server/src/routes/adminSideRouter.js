@@ -18,9 +18,9 @@ adminSideRouter.route('/signIn')
 adminSideRouter.route('/signOut')
   .post(checkAuth, signController.signOut)
 
-// // Получение администратором всех пользователей
-// adminSideRouter.route('/getAllUsers')
-//   .get(checkAuth, signController.getUsers)
+// Получение администратором всех пользователей
+adminSideRouter.route('/getAllUsers')
+  .get(checkAuth, signController.getUsers)
 
 // Действия администратора над продуктами
 adminSideRouter.route('/products/')
