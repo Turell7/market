@@ -1,18 +1,20 @@
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import styles from './styles.module.css'
 import telephone from '../../assets/telephone-handle-silhouette_icon-icons.com_73380.svg'
 import cart from '../../assets/basket_96252.svg'
 import profile from '../../assets/4092564-about-mobile-ui-profile-ui-user-website_114033.svg'
-import { useState } from 'react'
-import { Modal } from '../ModalRegistration'
+import { Modal } from '../Modal'
 import { FormRegistration } from '../FormRegistration'
+import { FormAuthorization } from '../FormAuthorization'
+import { useSelector } from 'react-redux'
+import { useState } from 'react'
 
 
 export function Header() {
-
   const [isModalOpen, setIsModalOpen] = useState(false)
+  const [auth, setAuth] = useState(true)
+  const navigate = useNavigate()
 
-  
   const openModal = () => {
     setIsModalOpen(true)
   }
@@ -21,7 +23,12 @@ export function Header() {
     setIsModalOpen(false)
   }
 
-  const user = localStorage.getItem('user')
+  const remove = () => {
+    localStorage.clear()
+    setAuth((prev) => !prev)
+  }
+
+  const userToken = localStorage.getItem('USER_KEY')
 
   return (
     <>
@@ -37,21 +44,28 @@ export function Header() {
       <div className={styles.containerHeaderProfile}>
         <div className={styles.containerPhone}>
           <img className={styles.imgPhone} src={telephone} alt='Телефон'/>
-          +7(999)-99-99-99
+          +7 (999) 99 99 99
         </div>
-        <div className={styles.containerLogo}>Логотип</div>
-        {user ? (
+        <Link className={styles.containerLogo} to='/'><i className="fa-brands fa-fort-awesome"></i>The Best Brand House</Link>
+        {userToken? ( 
           <div className={styles.containerProfile}>
-          <img src={profile} className={styles.imgPhone} alt='Профиль' />
-          <img src={cart} className={styles.imgPhone} alt='Корзина' />
+          <img src={profile} onClick={() => navigate('/user')} className={styles.img} alt='Профиль' />
+          <img src={cart} className={styles.img} alt='Корзина' />
+          <button className={styles.btn} onClick={() => remove()} type="button">Выйти</button>
         </div>
         ) : (
-          <button type="button" className={styles.btn} onClick={() => openModal()}>Регистрация</button>
+          <button type="button" className={styles.btn} onClick={() => openModal()}>
+            {auth ? "Войти" : "Зарегистрироваться"}
+          </button>
         )}
         </div>
       </div>
       <Modal isOpen={isModalOpen} closeHendler={closeModal}>
-        <FormRegistration closeModal={closeModal} />
+        {auth ?
+          <FormAuthorization closeModal={closeModal} change={setAuth} />
+        :
+          <FormRegistration closeModal={closeModal} change={setAuth} />
+        }
       </Modal>
     </>
   )

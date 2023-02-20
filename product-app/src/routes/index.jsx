@@ -1,16 +1,21 @@
 import { createBrowserRouter } from "react-router-dom"
 import App from "../App"
+import { User } from "../pages/User"
 import { About } from "../pages/About"
-import { Catalog } from "../pages/Catalog"
 import { Contacts } from "../pages/Contacts"
 import { Help } from "../pages/Help"
 import { Home } from "../pages/Home"
+import { CardInfo } from "../components/CardInfo"
 
 export const router = createBrowserRouter([
     {
       path: "/",
       element: <App />,
       children: [
+        {
+          path: "/",
+          element: <Home />,
+        },
         {
           path: "/contacts",
           element: <Contacts />
@@ -24,12 +29,12 @@ export const router = createBrowserRouter([
           element: <Help />
         },
         {
-          path: "/home",
-          element: <Home />
+          path: '/user',
+          element: <User />
         },
         {
-          path: "/catalog",
-          element: <Catalog />
+          path: '/cardinfo',
+          element: <CardInfo />
         },
       ]
     },

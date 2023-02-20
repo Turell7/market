@@ -12,7 +12,7 @@ module.exports = {
         jsx: true,
       },
       ecmaVersion: 'latest',
-      sourceType: 'module',
+      sourceType: 'module',      
     },
     plugins: [
       'react',
@@ -30,4 +30,4 @@ module.exports = {
       'react/jsx-filename-extension': 0,
     },
   }
-  
+     
