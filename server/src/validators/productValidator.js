@@ -8,6 +8,7 @@ const createProductSchema = yup.object({
   stock: yup.number(),
   discount: yup.number(),
   description: yup.string(),
+  images: yup.array().required(),
 })
 
 module.exports = { createProductSchema }

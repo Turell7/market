@@ -28,14 +28,11 @@ const ProductModel = sequelize.define('product', {
     type: Sequelize.INTEGER,
     defaultValue: 0,
   },
-  category: {
-    type: Sequelize.STRING,
-  },
   image: {
     type: Sequelize.TEXT,
     defaultValue: 'https://cdns.iconmonstr.com/wp-content/releases/preview/2019/240/iconmonstr-product-3.png',
   },
 })
-ProductModel.hasMany(ImageModel, { onDelete: 'cascade' })
+ProductModel.hasMany(ImageModel, { onDelete: 'CASCADE' })
 
 module.exports = { ProductModel }

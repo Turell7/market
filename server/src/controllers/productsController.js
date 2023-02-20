@@ -1,8 +1,6 @@
-// const {
-//   AllProducts, NewProduct, ProductById, deleteProduct, updateProduct,
-// } = require('../models/productModel')
 const { ProductModel } = require('../models/productModel')
 const { ImageModel } = require('../models/imageModel')
+const { CategoryModel } = require('../models/categoryModel')
 const productValidator = require('../validators/productValidator')
 const { getPreparedErrorsFromYup } = require('../validators/utils')
 
@@ -28,11 +26,20 @@ const createNewProduct = async (req, res) => {
     return
   }
   try {
-    const { images, ...productReq } = req.body
-    const newProductFromDB = await ProductModel.create(productReq)
-    const promisMass = images.map((elem) => newProductFromDB.createImage({ image: elem }))
-    const result = await Promise.all(promisMass)
-    console.log(result)
+    const { images, category, ...productReq } = req.body
+    console.log(category)
+    const categoryByName = await CategoryModel.findOne({
+      where: {
+        name: category,
+      },
+    })
+    if (categoryByName === null) throw new Error('Category not found')
+    const newProductFromDB = await categoryByName.createProduct(productReq)
+    let result = []
+    if (images.length !== 0) {
+      const promiseMass = images.map((elem) => newProductFromDB.createImage({ image: elem }))
+      result = await Promise.all(promiseMass)
+    }
     res
       .status(201)
       .json({ ...newProductFromDB.dataValues, images: result })
@@ -45,7 +52,7 @@ const createNewProduct = async (req, res) => {
 const getProductById = async (req, res) => {
   try {
     const { id } = req.params
-    const productById = await ProductModel.findByPk(id)
+    const productById = await ProductModel.findByPk(id, { include: ImageModel })
     res
       .status(201)
       .json(productById)
@@ -99,6 +106,3 @@ const updateProductbyId = async (req, res) => {
 module.exports = {
   getAllProducts, createNewProduct, getProductById, deleteProductById, updateProductbyId,
 }
-// module.exports = {
-//   getAllProducts, createNewProduct, getProductById, deleteProductById, updateProductbyId,
-// }
