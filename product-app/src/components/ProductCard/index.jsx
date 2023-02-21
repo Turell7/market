@@ -2,10 +2,13 @@ import { useNavigate } from 'react-router-dom'
 import styles from './styles.module.scss'
 import backgroundImg from '../../assets/background.jpg'
 
+
 export function ProductCard() {
 
   const navigate = useNavigate() 
   const cardInfo = () => navigate(`/cardinfo`) // Функция по клику совершает (navigate) на страницу карточки
+
+
 
   return (
       <div className={styles.productCardWr}>

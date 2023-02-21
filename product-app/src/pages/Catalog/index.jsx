@@ -1,9 +1,24 @@
 import { ProductCard } from '../../components/ProductCard'
 import styles from './styles.module.scss'
+import { api } from '../../../Api'
+import { useQuery } from '@tanstack/react-query'
+
+
+export const PRODUCTS_QUERY_KEY = ['PRODUCTS_QUERY_KEY']
+
 
 export function Catalog() {
 
-  const DataProducts = [1, 2, 3, 4, 5, 6, 7, 8]
+  
+  const {data, status, isError, isLoading, isFetching} = useQuery({
+    queryKey: PRODUCTS_QUERY_KEY,
+    queryFn: () => api.getAllProducts(),
+  })
+  
+  
+  console.log(data, status, isError, isLoading, isFetching)
+  
+  const DataProducts = [1, 2, 3, 4]
 
   return (
       <div className={styles.catalogWr}>
