@@ -1,12 +1,12 @@
+/* eslint-disable function-paren-newline */
 import axios from 'axios'
-// import { token } from '../src/tools/utils'
-
+import { token } from '../src/tools/utils'
 
 class Api {
   constructor(path) {
     this.path = path
     this.headers = { 'Content-Type': 'application/json' }
-    // this.token = token
+    this.token = token()
     this.authInstance = this.token ? axios.create({
       headers: {
         authorization: `Bearer ${this.token}`,
@@ -24,8 +24,8 @@ class Api {
         name,
         password,
         email,
-      }
-  )
+      },
+    )
     return res
   }
 
@@ -45,12 +45,13 @@ class Api {
     return this.authInstance(`/products/${id}`)
   }
 
-  createProduct(productData) {
-    return this.authInstance.post('/products', JSON.stringify(productData))
+  getProductsCategory() {
+    const res = axios(`${this.path}/category`)
+    return res
   }
 }
 
-const api = new Api('http://localhost:3050/api/v0.1')
+const api = new Api('http://localhost:3050/api/v0.1/client')
 const adminApi = new Api('http://localhost:3050/api/v0.1/admin')
 
 export {
