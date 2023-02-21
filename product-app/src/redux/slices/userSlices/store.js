@@ -1,14 +1,13 @@
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit"
-import userSlices from "./userSlice/userSlices"
+import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import userSlices from './userSlice/userSlices'
 
-const USER_KEY = ["USER_KEY"]
+const USER_KEY = ['USER_KEY']
 
 const middleware = getDefaultMiddleware({
   immutableCheck: false,
   serializableCheck: false,
   thunk: true,
-});
-
+})
 
 export const store = configureStore({
   reducer: {
