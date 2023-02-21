@@ -1,4 +1,4 @@
-import { createPortal } from "react-dom"
+import { createPortal } from 'react-dom'
 import styles from './styles.module.scss'
 
 export function Modal({ isOpen, children }) {

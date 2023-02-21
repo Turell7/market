@@ -74,4 +74,4 @@ const basketQuantity = () => {
         </>}             
     </div>
   )
-}    
+}

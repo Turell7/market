@@ -39,7 +39,7 @@ const LoadCardsFn = () => {
             <button>ПОПУЛЯРНОЕ</button>
           </div>                    
           {LoadCardsFn()}     
+
     </div>
   )
 }
-
