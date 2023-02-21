@@ -21,7 +21,8 @@ export function FormAuthorization({ closeModal, change }) {
     mutationFn: (values) => getSignIn(values.email, values.password),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: USER_SIGN_IN })
-    }
+    },
+    onError: () => toast.error('К сожалению произошла ошибка'),
   })
 
   const userToken = async (email, password) => {
@@ -59,16 +60,15 @@ export function FormAuthorization({ closeModal, change }) {
       <Field className={styles.input} key="password" name="password" type="password" placeholder="Пароль" />
       <ErrorMessage name="password" />
 
-      <button type="submit" className={styles.btnAdd}>Авторизация</button>
-      <button className={styles.btnAdd} type="button" onClick={() => {change(prev => !prev)}}>Зарегистрироваться</button>
-    </Form>
-    </Formik>
-    <button
-      type="button"
-      className={styles.btn}
-      onClick={closeModal}
-    >
-    </button>
+          <button type="submit" className={styles.btnAdd}>Войти</button>
+          <button className={styles.btnAdd} type="button" onClick={() => { change((prev) => !prev) }}>Регистрация</button>
+        </Form>
+      </Formik>
+      <button
+        type="button"
+        className={styles.btn}
+        onClick={closeModal}
+      />
     </div>
   )
 }

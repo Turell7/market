@@ -65,16 +65,15 @@ export function FormRegistration({ closeModal, change }) {
       <Field className={styles.input} key="email" name="email" type="email" placeholder="E-mail" />
       <ErrorMessage name="email" />
 
-      <button type="submit" className={styles.btnAdd}>Регистрация</button>
-      <button className={styles.btnAdd} type="button" onClick={() => { change(prev => !prev) }}>Войти</button>
-    </Form>
-    </Formik>
-    <button
-      type="button"
-      className={styles.btn}
-      onClick={closeModal}
-    >
-    </button>
+          <button type="submit" className={styles.btnAdd}>Зарегистрироваться</button>
+          <button className={styles.btnAdd} type="button" onClick={() => { change((prev) => !prev) }}>Авторизация</button>
+        </Form>
+      </Formik>
+      <button
+        type="button"
+        className={styles.btn}
+        onClick={closeModal}
+      />
     </div>
   )
 }
