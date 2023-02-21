@@ -39,6 +39,14 @@ li:first-child {
   justify-content: space-between;
 }
 
+
+@media (max-width: 750px) {
+  .containerHeaderProfile {
+    flex-direction: column;
+    padding-top: 10px;
+  }  
+}
+
 .containerPhone {
   display: flex;
   flex-direction: row;
@@ -81,6 +89,15 @@ li:first-child {
   justify-content: center;
   gap: 25px;
   cursor: pointer;
+}
+
+.containerProfile> img {
+  opacity: 0.8;
+}
+
+.containerProfile> span {
+  opacity: 0.8;
+  font-size: 18px;
 }
 
 .btn {
