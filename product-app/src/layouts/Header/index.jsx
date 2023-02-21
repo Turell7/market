@@ -60,7 +60,12 @@ export function Header() {
                   onClick={() => navigate('/favorites')}
                 />
               </span>
-              <img src={cart} className={styles.img} alt="Корзина" />
+              <img
+                src={cart}
+                className={styles.img}
+                onClick={() => navigate('/cart')}
+                alt="Корзина"
+              />
               <button className={styles.btn} onClick={() => remove()} type="button">Выйти</button>
             </div>
           ) : (

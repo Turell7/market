@@ -7,6 +7,7 @@ import { Help } from '../pages/Help'
 import { Home } from '../pages/Home'
 import { CardInfo } from '../components/CardInfo'
 import { Favorites } from '../pages/Favorites'
+import { Cart } from '../pages/Cart'
 
 export const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ export const router = createBrowserRouter([
       {
         path: '/favorites',
         element: <Favorites />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
     ],
   },

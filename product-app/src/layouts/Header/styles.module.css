@@ -80,6 +80,7 @@ li:first-child {
   align-items: center;
   justify-content: center;
   gap: 25px;
+  cursor: pointer;
 }
 
 .btn {
