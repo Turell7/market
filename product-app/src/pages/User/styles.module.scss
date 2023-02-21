@@ -1,14 +1,13 @@
-
 .aboutUserWr {
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.userWr{
+.userWr {
   margin-top: 50px;
-  background-color: #F0F2F1;
+  background-color: #f0f2f1;
   padding: 10px;
   border-radius: 2px;
 }
@@ -19,9 +18,11 @@ align-items: center;
   flex-direction: column;
   justify-content: center;
   border: 1px solid white;
-  background-color: #F0F2F1;
-  border-radius: 2px;
-  padding: 25px;
+  background-color: #f0f2f1;
+  border-radius: 8px;
+  padding: 15px;
+  box-shadow: 3px 3px 3px;
+  opacity: 0.8;
 }
 
 .userAvatar {
@@ -44,7 +45,7 @@ align-items: center;
 
 h4 {
   margin: 0;
-  opacity: 0.9;  
+  opacity: 0.9;
 }
 
 .aboutUserBtn {
@@ -52,7 +53,7 @@ h4 {
 }
 
 .btn {
-  background-color: #8FC0AD;
+  background-color: #8fc0ad;
   color: white;
   border: none;
   border: 1px solid #6c6c6c49;
@@ -64,31 +65,30 @@ h4 {
 
 .btn:hover {
   box-shadow: 0px 0px 3px 0.1px rgba(0, 0, 0, 0.527);
-  }
+}
 
 .link {
   margin-top: 50px;
   padding: 10px 3px;
   border: none;
-  text-decoration: inherit; 
+  text-decoration: inherit;
   color: rgb(255, 255, 255);
-  background-color: #8FC0AD;
+  background-color: #8fc0ad;
   border-radius: 3px;
   font-weight: 400;
   font-size: 16px;
   border: 1px solid white;
-  }
-  
-  .link>span {
+}
+
+.link > span {
   border: 1px solid white;
   padding: 6px 12px;
-  }
-  
-  
-  .link:hover {
+}
+
+.link:hover {
   box-shadow: 0px 0px 3px 0.1px rgba(0, 0, 0, 0.527);
-  }
-  
-  .link:active {
+}
+
+.link:active {
   background-color: #6c6c6c;
-  }
+}
