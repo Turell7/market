@@ -20,7 +20,7 @@ sequelize.sync({ alter: true })
 
 server.use(express.json())
 // Роут сайта клиента
-server.use('/api/v0.1/products', clientSideRouter)
+server.use('/api/v0.1/client', clientSideRouter)
 // Роут админки
 server.use('/api/v0.1/admin', adminSideRouter)
 
