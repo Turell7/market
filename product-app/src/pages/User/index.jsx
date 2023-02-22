@@ -6,6 +6,8 @@ import styles from './styles.module.scss'
 export function User() {
   return (
     <>
+    <div className={styles.aboutUserWr}>
+      <div className={styles.userWr}>
       <div className={styles.containerUser}>
         <div className={styles.userAvatar}>
           <img className={styles.user} src={images} alt='Аватар' />
@@ -19,7 +21,9 @@ export function User() {
           </div>
         </div>
       </div>
-      <Link to='/'>На главную</Link>
+      </div>
+      <Link to='/' className={styles.link}><span>На главную</span></Link>
+    </div>
     </>
   )
 }

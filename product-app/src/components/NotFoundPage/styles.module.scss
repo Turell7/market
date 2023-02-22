@@ -1,9 +1,4 @@
 
-.containerHelp {
-    font-weight: 600;
-    opacity: 0.8;
-}
-
 .page {
 font-weight: 400;
 font-size: 24px;
@@ -13,6 +8,23 @@ flex-direction: column;
 justify-content: center;
 align-items: center;
 margin-top: 150px;
+}
+
+.iWr {
+    display: flex;
+    align-items: center;
+}
+
+.iWr> i {
+    margin-right: 20px;
+    font-size: 26px;
+    opacity: 0.8;
+}
+
+.iWr> p {
+    font-size: 26px;
+    font-weight: 600;
+    opacity: 0.8;
 }
 
 .link {
