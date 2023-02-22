@@ -2,33 +2,17 @@ import { useMutation } from '@tanstack/react-query'
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik'
-// import { useSelector } from 'react-redux'
-// import { Navigate } from 'react-router-dom'
-// import { useState } from 'react'
+import { useState } from 'react'
 import * as Yup from 'yup'
 import { adminApi } from '../../Api'
 
 export function CreateProduct({ setIsAddItem }) {
-//   const token = useSelector((store) => store.user.token)
-  //   const noPictures = 'https://banner2.cleanpng.com/20180615/yvr/kisspng-computer-icons-landscape-via-ghilini-5b2451fe9d0e69.0779585515291069426433.jpg'
-  //   const [pictures, setPictures] = useState('')
-
-  //   const navigate = useNavigate()
-
+  const [imgUrl, setImgUrl] = useState()
   const successHandler = () => { setIsAddItem((prev) => !prev) }
-
   const { mutate } = useMutation({
     mutationFn: (productData) => adminApi.createProduct(productData),
     onSuccess: successHandler,
   })
-
-  // const test = document.forms.addProduct
-  // console.log({ test })
-
-  // const test2 = document.getElementsByTagName('input')[0]
-  // console.log({ test2 })
-
-  //   if (!token) return <Navigate to="/" />
   return (
     <>
       <h1>Add a new product</h1>
@@ -38,8 +22,8 @@ export function CreateProduct({ setIsAddItem }) {
           price: '',
           discount: '',
           stock: '',
-          wight: '',
-          pictures: '',
+          category: '',
+          image: '',
           description: '',
         }}
         validationSchema={Yup.object(
@@ -55,16 +39,15 @@ export function CreateProduct({ setIsAddItem }) {
               .min(0, 'Must be positive'),
             stock: Yup.number()
               .min(1, 'Min 1 item on stock'),
-            wight: Yup.string()
-              .min(2, 'More than 2 symbols')
-              .max(20, 'Max 20 symbols'),
-            pictures: Yup.string().url()
-              .min(2, 'More than 2 symbols')
-              .max(200, 'Max 100 symbols')
+            categoryId: Yup.number()
+              .min(0, 'Must be positive'),
+            image: Yup.string().url()
+              .min(5, 'More than 5 symbols')
+              .max(800, 'Max 800 symbols')
               .required('Please set image url'),
             description: Yup.string()
               .min(10, 'More than 10 symbols')
-              .max(500, 'Max 500 symbols')
+              .max(1000, 'Max 1000 symbols')
               .required('Please set description'),
           },
         )}
@@ -112,32 +95,30 @@ export function CreateProduct({ setIsAddItem }) {
             </div>
             <div className="form-control">
               <div className="label">
-                <span className="label-text">Wight (g)</span>
+                <span className="label-text">Category</span>
               </div>
-              <Field name="wight" type="text" placeholder="100 г" className="input input-bordered" />
-              <ErrorMessage component="span" name="wight" className="error" />
+              <Field as="select" name="categoryId" className="input input-bordered">
+                <option value={1}>Без категории</option>
+                <option value={2}>Косметички</option>
+                <option value={3}>Кошельки</option>
+                <option value={4}>Наборы</option>
+              </Field>
+              <ErrorMessage component="span" name="categoryId" className="error" />
             </div>
           </div>
           <div>
-            {/* <div className="flex justify-end">
-            {!pictures
-              ? <img className="max-w-xs max-h-40 right-0" src={noPictures} alt="Added product" />
-              : <img className="max-w-xs max-h-40 right-0" src={pictures} alt="Added product" />}
-          </div> */}
+            <div className="flex justify-end">
+              {!imgUrl
+                ? <img className="max-w-xs max-h-40 right-0" src="https://www.techteam.ru/assets/site/img/ms2_big@2x.png" alt="Added product" />
+                : <img className="max-w-xs max-h-40 right-0" src={imgUrl} alt="Added product" />}
+            </div>
             <div className="form-control">
               <div className="label">
-                <span className="label-text">Pictures</span>
+                <span className="label-text">Image</span>
               </div>
-              <Field name="pictures" type="url" placeholder="https://example.com/pictures.png" className="input input-bordered" />
-              <ErrorMessage component="span" name="pictures" className="error" />
+              <Field validate={(e) => setImgUrl(e)} name="image" type="url" placeholder="https://example.com/pictures.png" className="input input-bordered" />
+              <ErrorMessage component="span" name="image" className="error" />
             </div>
-            {/* <div className="form-control">
-            <div className="label">
-              <span className="label-text">Pictures</span>
-            </div>
-            <Field name="pictures" type="url" value={pictures} onChange={(e) => setPictures(e.target.value)} placeholder="https://example.com/pictures.png" className="input input-bordered" />
-            <ErrorMessage component="span" name="pictures" className="error" />
-          </div> */}
             <div className="form-control">
               <div className="label">
                 <span className="label-text">Description</span>

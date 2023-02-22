@@ -1,1 +1,7 @@
-export const getUserToken = () => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjljOGRhMTc3LTlkM2ItNDliYS05ZjYwLTg5N2QzMDMxZjY1NiIsImlhdCI6MTY3NjQ5NTMwMCwiZXhwIjoxNjc2NDk4OTAwfQ.y0WJmxTexOiO2CVoQSX6X6AJc_JUvsxzGvXzK0vedto'
+import { USER_STORAGE_KEY } from './storageKeys'
+
+export const getUserToken = () => {
+  const userLS = window.localStorage.getItem(USER_STORAGE_KEY)
+  if (userLS) return JSON.parse(userLS).token
+  return null
+}

@@ -1,19 +1,24 @@
 // import userDefault from '../../assets/userDefault.jpeg'
 
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useLogOut } from '../../hooks/useLogOut'
 
 export function Profile() {
+  const user = useSelector((store) => store.user.user)
+  const { logOut } = useLogOut()
+
   return (
     <div className="my-10">
       <div className="bg-white rounded overflow-hidden shadow-lg">
         <div className="text-center p-6  border-b">
           <div className="avatar">
             <div className="w-24 mask mask-squircle">
-              <img src alt="avatar" />
+              <img src={user.avatar} alt="avatar" />
             </div>
           </div>
-          <p className="pt-2 text-lg font-semibold">Name</p>
-          <p className="text-sm text-gray-600">email</p>
+          <p className="pt-2 text-lg font-semibold">{user.name}</p>
+          <p className="text-sm text-gray-600">{user.email}</p>
 
         </div>
         <div className="border-b">
@@ -32,8 +37,8 @@ export function Profile() {
               </svg>
             </div>
             <div className="pl-3">
-              <p className="text-sm font-medium text-gray-800 leading-none">Status</p>
-              <p className="text-xs text-gray-500">About</p>
+              <p className="text-sm font-medium text-gray-800 leading-none">{user.role}</p>
+              <p className="text-xs text-gray-500">role</p>
             </div>
           </div>
         </div>
@@ -45,7 +50,7 @@ export function Profile() {
             </p>
           </Link>
           <div className="flex justify-center">
-            <button type="button" className="btn btn-wide">
+            <button onClick={logOut} type="button" className="btn btn-wide">
               Log out
             </button>
           </div>
