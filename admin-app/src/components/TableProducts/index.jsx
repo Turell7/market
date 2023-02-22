@@ -1,5 +1,5 @@
 import { useQuery } from '@tanstack/react-query'
-import { Box, Skeleton } from '@mui/material'
+// import { Box, Skeleton } from '@mui/material'
 import { CustomTable } from '../CustomTable'
 import { PRODUCTS_QUERY_KEY } from '../../tools/queryKeys'
 import { api } from '../../Api'
@@ -48,15 +48,16 @@ export function TableProducts({ setIsAddItem }) {
 
   if (isLoading || isFetching) {
     return (
-      <Box sx={{ width: 640 }}>
-        <Skeleton sx={{ height: 100 }} animation="wave" />
-        <Skeleton sx={{ height: 80 }} animation="wave" />
-        <Skeleton sx={{ height: 80 }} animation="wave" />
-        <Skeleton sx={{ height: 80 }} animation="wave" />
-        <Skeleton sx={{ height: 80 }} animation="wave" />
-        <Skeleton sx={{ height: 80 }} animation="wave" />
-        <Skeleton variant="text" />
-      </Box>
+      <div>jhkh</div>
+      // <Box sx={{ width: 640 }}>
+      //   <Skeleton sx={{ height: 100 }} animation="wave" />
+      //   <Skeleton sx={{ height: 80 }} animation="wave" />
+      //   <Skeleton sx={{ height: 80 }} animation="wave" />
+      //   <Skeleton sx={{ height: 80 }} animation="wave" />
+      //   <Skeleton sx={{ height: 80 }} animation="wave" />
+      //   <Skeleton sx={{ height: 80 }} animation="wave" />
+      //   <Skeleton variant="text" />
+      // </Box>
     )
   }
 
