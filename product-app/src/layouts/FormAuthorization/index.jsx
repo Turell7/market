@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/control-has-associated-label */
 import { useMutation } from '@tanstack/react-query'
 import {
   ErrorMessage, Field, Form, Formik,
@@ -21,54 +22,57 @@ export function FormAuthorization({ closeModal, change }) {
     mutationFn: (values) => getSignIn(values.email, values.password),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: USER_SIGN_IN })
-    }
+    },
+
+    onError: () => toast.error('К сожалению произошла ошибка'),
+
   })
 
   const userToken = async (email, password) => {
-    const data
-    = await mutateAsync(email,password)
+    const data = await mutateAsync(email, password)
     closeModal()
     dispatch(addUser(data.data.accessToken))
+    toast.success('Вы авторизованны!')
   }
-
 
   return (
     <div className={styles.containerModal}>
-    <Formik
-      initialValues={{
-        email: '',
-        password: '',
-    }}
-    validationSchema={Yup.object({
-      email: Yup.string()
-        .required('Поле обязательно к заполнению'),
-      password: Yup.string()
-        .required('Поле обязательно к заполнению'),
-    })}
-    onSubmit={(values, { resetForm }) => {
-      userToken(values)
-      resetForm()
-    }}
-    >
-    <Form
-      className={styles.form__inputs}
-    >
-      <Field className={styles.input} key="email" name="email" type="email" placeholder="E-mail" />
-      <ErrorMessage name="email" />
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+        }}
+        validationSchema={Yup.object({
+          email: Yup.string()
+            .required('Поле обязательно к заполнению'),
+          password: Yup.string()
+            .required('Поле обязательно к заполнению'),
+        })}
+        onSubmit={(values, { resetForm }) => {
+          userToken(values)
+          resetForm()
+        }}
+      >
+        <Form
+          className={styles.form__inputs}
+        >
+          <Field className={styles.input} key="email" name="email" type="email" placeholder="E-mail" />
+          <ErrorMessage name="email" />
 
-      <Field className={styles.input} key="password" name="password" type="password" placeholder="Пароль" />
-      <ErrorMessage name="password" />
+          <Field className={styles.input} key="password" name="password" type="password" placeholder="Пароль" />
+          <ErrorMessage name="password" />
 
-      <button type="submit" className={styles.btnAdd}>Авторизация</button>
-      <button className={styles.btnAdd} type="button" onClick={() => {change(prev => !prev)}}>Зарегистрироваться</button>
-    </Form>
-    </Formik>
-    <button
-      type="button"
-      className={styles.btn}
-      onClick={closeModal}
-    >
-    </button>
+
+          <button type="submit" className={styles.btnAdd}>Войти</button>
+          <button className={styles.btnAdd} type="button" onClick={() => { change((prev) => !prev) }}>Регистрация</button>
+
+        </Form>
+      </Formik>
+      <button
+        type="button"
+        className={styles.btn}
+        onClick={closeModal}
+      />
     </div>
   )
 }

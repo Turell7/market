@@ -3,6 +3,9 @@
 const express = require('express')
 const signController = require('../controllers/signController')
 const productsController = require('../controllers/productsController')
+const categoryController = require('../controllers/categoryController')
+const imageController = require('../controllers/imageController')
+
 const { checkAuth } = require('../middlewares/authGuard')
 
 const adminSideRouter = express.Router()
@@ -37,6 +40,26 @@ adminSideRouter.route('/products/:id')
   .delete(checkAuth, productsController.deleteProductById)
   // Редактировать продукт по ID
   .patch(checkAuth, productsController.updateProductbyId)
+
+adminSideRouter.route('/category')
+  // Получить все
+  .get(categoryController.getAllCategories)
+  // Создать новую категорию
+  .post(checkAuth, categoryController.createNewCategory)
+
+// Действия администратора над конкретной картинкой по ID
+adminSideRouter.route('/images/:id')
+// Удалить картинку по ID
+  .delete(checkAuth, imageController.deleteImageById)
+// adminSideRouter.route('/category/:name')
+//   // Получить все
+//   .get(categoryController.getCategoryByName)
+//   // Создать новую категорию
+//   // .post(checkAuth, categoryController.createNewCategory)
+
+adminSideRouter.route('/productsWithCategories')
+  // Получить все продукты с категориями
+  .get(categoryController.getAllProductsWithCategory)
 
 // adminRouter.get('/refresh', checkAuth, authController.refreshToken)
 

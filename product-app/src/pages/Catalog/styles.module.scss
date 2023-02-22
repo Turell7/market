@@ -36,6 +36,7 @@
 @media (max-width: 1260px) {
     .catalogCardWr {
         grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
      }      
 }
 

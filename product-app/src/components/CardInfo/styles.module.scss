@@ -31,18 +31,27 @@
     justify-content: center;
     align-items: center;
     background-color: #F0F2F1;
-    padding: 10px 10px;  
+    padding: 0px 0px;  
     border: 2px solid white; 
+    position: relative;
+}
+
+.discount {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    background-color: rgb(226, 211, 2);
+    padding: 0px 15px;
+    font-weight: 600;
+    opacity: 0.9;
 }
 
 .imgWr>img {
-    min-height: 350px;
-    min-width: 265px;
-    max-width: 100%;
+    min-height: 370px;
+    min-width: 100%;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    border: 2px solid white;
 }
 
 .textBorder{
@@ -71,7 +80,7 @@
 }
 
 .starTrue{
-    color: yellow;
+    color: #8FC0AD;
 }
 
 .rating {

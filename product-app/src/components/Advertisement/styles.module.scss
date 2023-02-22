@@ -28,17 +28,17 @@
     grid-template-columns: 50% 50%;
 }
 
-@media (max-width: 900px) {
-    .advertisementWrLeftCard {
-        margin-right: 0px;
-     }      
-}
-
 .WrLeftCard{
     margin-right: 5px;
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+}
+
+@media (max-width: 900px) {
+    .WrLeftCard {
+        margin-right: 0px;
+     }      
 }
 
 .WrLeftCard:hover{

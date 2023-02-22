@@ -1,154 +1,137 @@
-import { Button, TextField } from '@mui/material'
 import { useMutation } from '@tanstack/react-query'
-import { useFormik } from 'formik'
-import { useNavigate } from 'react-router-dom'
+import {
+  ErrorMessage, Field, Form, Formik,
+} from 'formik'
+import { useState } from 'react'
 import * as Yup from 'yup'
 import { adminApi } from '../../Api'
-// import UnstyledSelectSimple from '../Select'
 
-// const REQUIRED_ERROR_MESSAGE = 'error messge'
-
-export function CreateProduct() {
-  const navigate = useNavigate()
-
-  const successHandler = () => {
-    navigate('/products')
-  }
-
+export function CreateProduct({ setIsAddItem }) {
+  const [imgUrl, setImgUrl] = useState()
+  const successHandler = () => { setIsAddItem((prev) => !prev) }
   const { mutate } = useMutation({
     mutationFn: (productData) => adminApi.createProduct(productData),
     onSuccess: successHandler,
   })
-
-  const validationSchema = Yup.object({
-    name: Yup.string()
-      .min(2, 'More than 2 symbols')
-      .max(40, 'Max 40 symbols')
-      .required('Please set name'),
-    price: Yup.number()
-      .min(1, 'Cant be < 1')
-      .required('empty'),
-    picture: Yup.string().url()
-      .min(7, 'More than 2 symbols')
-      .required('Please set image url'),
-    // .max(200, 'Max 100 symbols')
-    // discount: Yup.number()
-    //   .min(0, 'Must be positive'),
-    // stock: Yup.number()
-    //   .min(1, 'Min 1 item on stock'),
-    // wight: Yup.string()
-    //   .min(2, 'More than 2 symbols')
-    //   .max(20, 'Max 20 symbols'),
-    // description: Yup.string()
-    //   .min(10, 'More than 10 symbols')
-    //   .max(500, 'Max 500 symbols')
-    //   .required('Please set description'),
-  })
-
-  const formik = useFormik({
-    initialValues: {
-      name: '',
-      price: '',
-      picture: '',
-      // discount: '',
-      // stock: '',
-      // wight: '',
-      // description: '',
-    },
-    validationSchema,
-    onSubmit: (values) => {
-      mutate(values)
-      console.log({ values })
-    },
-  })
-  // console.log(formik)
-  // console.log(formik.values)
   return (
-    <div>
-      <img
-        src={formik.values.picture}
-        style={{
-          maxWidth: 300,
-          maxHeight: 200,
+    <>
+      <h1>Add a new product</h1>
+      <Formik
+        initialValues={{
+          name: '',
+          price: '',
+          discount: '',
+          stock: '',
+          category: '',
+          image: '',
+          description: '',
         }}
-        alt="product"
-      />
-      <form onSubmit={formik.handleSubmit}>
-        <TextField
-          fullWidth
-          id="name"
-          name="name"
-          label="name"
-          type="text"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
-        />
-        <TextField
-          fullWidth
-          id="price"
-          name="price"
-          label="price"
-          type="number"
-          value={formik.values.price}
-          onChange={formik.handleChange}
-          error={formik.touched.price && Boolean(formik.errors.price)}
-          helperText={formik.touched.price && formik.errors.price}
-        />
-        <TextField
-          fullWidth
-          id="picture"
-          name="picture"
-          label="picture"
-          type="text"
-          value={formik.values.picture}
-          onChange={formik.handleChange}
-          error={formik.touched.picture && Boolean(formik.errors.picture)}
-          helperText={formik.touched.picture && formik.errors.picture}
-        />
-        {/* <TextField
-          fullWidth
-          id="discount"
-          name="discount"
-          label="discount"
-          type="number"
-          value={formik.values.discount}
-          onChange={formik.handleChange}
-          error={formik.touched.discount && Boolean(formik.errors.discount)}
-          helperText={formik.touched.discount && formik.errors.discount}
-        /> */}
-        {/* <Select
-          fullWidth
-          id="discount"
-          name="discount"
-          label="discount"
-          type="select"
-          value={formik.values.discount}
-          onChange={formik.handleChange}
-          error={formik.touched.discount && Boolean(formik.errors.discount)}
-          helperText={formik.touched.discount && formik.errors.discount}
-
-        >
-          <option value={0}>not discount</option>
-          <option value={5}>5%</option>
-          <option value={10}>15%</option>
-          <option value={20}>20%</option>
-          <option value={25}>25%</option>
-          <option value={30}>30%</option>
-          {/* <OptionUnstyled value={20}>Twenty</OptionUnstyled> */}
-        {/* </Select> */}
-        {/* <UnstyledSelectSimple>
-
-          <StyledOption value={10}>Ten</StyledOption>
-          <StyledOption value={20}>Twenty</StyledOption>
-          <StyledOption value={30}>Thirty</StyledOption>
-        </UnstyledSelectSimple> */}
-        {/* <UnstyledSelectSimple formik={formik} /> */}
-        <Button color="primary" variant="contained" fullWidth type="submit">
-          Add product
-        </Button>
-      </form>
-    </div>
+        validationSchema={Yup.object(
+          {
+            name: Yup.string()
+              .min(2, 'More than 2 symbols')
+              .max(40, 'Max 40 symbols')
+              .required('Please set name'),
+            price: Yup.number()
+              .min(1, 'Cant be < 1')
+              .required('empty'),
+            discount: Yup.number()
+              .min(0, 'Must be positive'),
+            stock: Yup.number()
+              .min(1, 'Min 1 item on stock'),
+            categoryId: Yup.number()
+              .min(0, 'Must be positive'),
+            image: Yup.string().url()
+              .min(5, 'More than 5 symbols')
+              .max(800, 'Max 800 symbols')
+              .required('Please set image url'),
+            description: Yup.string()
+              .min(10, 'More than 10 symbols')
+              .max(1000, 'Max 1000 symbols')
+              .required('Please set description'),
+          },
+        )}
+        onSubmit={(values) => {
+          mutate(values)
+        }}
+      >
+        <Form name="addProduct" className="card-body grid grid-cols-2">
+          {/* { message && <Alert message={message} />} */}
+          <div>
+            <div className="form-control">
+              <div className="label">
+                <span className="label-text">Product name</span>
+              </div>
+              <Field name="name" type="text" placeholder="A bone for cleaning dog teeth" className="input input-bordered" />
+              <ErrorMessage component="span" name="email" className="error" />
+            </div>
+            <div className="form-control">
+              <div className="label">
+                <span className="label-text">Price</span>
+              </div>
+              <Field name="price" type="number" placeholder="100" className="input input-bordered" />
+              <ErrorMessage component="span" name="price" className="error" />
+            </div>
+            <div className="form-control">
+              <div className="label">
+                <span className="label-text">Discount (%)</span>
+              </div>
+              <Field as="select" name="discount" className="input input-bordered">
+                <option value={0}>Без скидки</option>
+                <option value={5}>5%</option>
+                <option value={10}>10%</option>
+                <option value={15}>15%</option>
+                <option value={20}>20%</option>
+                <option value={25}>25%</option>
+              </Field>
+              <ErrorMessage component="span" name="discount" className="error" />
+            </div>
+            <div className="form-control">
+              <div className="label">
+                <span className="label-text">Stock (pc)</span>
+              </div>
+              <Field name="stock" type="number" placeholder="10" className="input input-bordered" />
+              <ErrorMessage component="span" name="stock" className="error" />
+            </div>
+            <div className="form-control">
+              <div className="label">
+                <span className="label-text">Category</span>
+              </div>
+              <Field as="select" name="categoryId" className="input input-bordered">
+                <option value={1}>Без категории</option>
+                <option value={2}>Косметички</option>
+                <option value={3}>Кошельки</option>
+                <option value={4}>Наборы</option>
+              </Field>
+              <ErrorMessage component="span" name="categoryId" className="error" />
+            </div>
+          </div>
+          <div>
+            <div className="flex justify-end">
+              {!imgUrl
+                ? <img className="max-w-xs max-h-40 right-0" src="https://www.techteam.ru/assets/site/img/ms2_big@2x.png" alt="Added product" />
+                : <img className="max-w-xs max-h-40 right-0" src={imgUrl} alt="Added product" />}
+            </div>
+            <div className="form-control">
+              <div className="label">
+                <span className="label-text">Image</span>
+              </div>
+              <Field validate={(e) => setImgUrl(e)} name="image" type="url" placeholder="https://example.com/pictures.png" className="input input-bordered" />
+              <ErrorMessage component="span" name="image" className="error" />
+            </div>
+            <div className="form-control">
+              <div className="label">
+                <span className="label-text">Description</span>
+              </div>
+              <Field as="textarea" name="description" type="textarea" placeholder="A healthy treat" className="textarea textarea-bordered" />
+              <ErrorMessage component="span" name="description" className="error" />
+            </div>
+            <div className="form-control mt-6">
+              <button type="submit" className="btn btn-secondary">Add product</button>
+            </div>
+          </div>
+        </Form>
+      </Formik>
+    </>
   )
 }

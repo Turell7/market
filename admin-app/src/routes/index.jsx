@@ -1,10 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom'
 import App from '../App'
-import { Categories } from '../pages/Categories'
 import { Main } from '../pages/Main'
-import { Products } from '../pages/Products'
-import { Users } from '../pages/Users'
 import { Profile } from '../pages/Profile'
+import { Users } from '../pages/Users'
+import { Products } from '../pages/Products'
+import { Categories } from '../pages/Categories'
+import { Authorization } from '../pages/Autorization'
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
       {
         path: '',
         element: <Main />,
+      },
+      {
+        path: 'authorization',
+        element: <Authorization />,
       },
       {
         path: 'profile',
