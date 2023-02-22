@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 .wrapper-app {
   display: flex;
   justify-content: space-between;
