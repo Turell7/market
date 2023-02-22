@@ -40,8 +40,10 @@
     position: absolute;
     top: 40px;
     right: 0;
-    background-color: rgb(226, 226, 2);
+    background-color: rgb(226, 211, 2);
     padding: 0px 15px;
+    font-weight: 600;
+    opacity: 0.9;
 }
 
 .imgWr>img {
@@ -78,7 +80,7 @@
 }
 
 .starTrue{
-    color: rgb(226, 226, 2);
+    color: #8FC0AD;
 }
 
 .rating {
