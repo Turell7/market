@@ -27,6 +27,7 @@ const createUser = async (userObj) => {
   const newUserFromDB = await UserModel.create({
     id: preparedUser.id,
     name: userObj.name,
+    last_name: userObj.last_name,
     password: hashPassword,
     about: userObj.about,
     avatar: userObj.avatar,

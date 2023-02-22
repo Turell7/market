@@ -17,10 +17,6 @@ export function CardInfo() {
   })
   
   
- //console.log(data, status, isError, isLoading, isFetching)
-
- //image, name, price, discount, description
-
  const discountImgFn = () => {
   if (data.data.discount > 0) {
     return <div className={styles.discount}>-{data.data.discount}%</div>
@@ -29,8 +25,12 @@ export function CardInfo() {
   }
 }
 
+const discountPriceFn = () => {
+  return data.data.price - (data.data.price / 100 * data.data.discount)
+}
+
 const basketQuantity = () => {
-  console.log("В корзину")
+  console.log("В корзину", id)
 }
 
   return (
@@ -56,7 +56,7 @@ const basketQuantity = () => {
                   <span className={styles.starTrue}><i className="fa-solid fa-star" /></span>
                   <span className={styles.starTrue}><i className="fas fa-star"></i></span>
                 </p>
-                <p>{data.data.price}p.</p>
+                <p>{data.data.discount > 0 ? discountPriceFn() : data.data.price}p.</p>
               <button type="button" onClick={basketQuantity} className={styles.btn}>
                   <span>
                     <i className="fa-solid fa-basket-shopping" />

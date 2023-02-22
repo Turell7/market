@@ -1,1 +1,5 @@
-export const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFhZjlhZTZiLTQ2ZmMtNGRkOC04YWQ1LWY0Y2M3NTMyZTgyZSIsImlhdCI6MTY3NjU2NTE4MCwiZXhwIjoxNjc2NjI1MTgwfQ.JuyihU5axqtLEiDh2VMd-jdcB6qNUc9BmlrPRtzDZzE"
+export const token = () => {
+  const userToken = localStorage.getItem('USER_KEY')
+  if (userToken) return JSON.parse(userToken).token
+  return null
+}
