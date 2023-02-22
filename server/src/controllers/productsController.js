@@ -26,19 +26,20 @@ const createNewProduct = async (req, res) => {
     return
   }
   try {
-    const { images, category, ...productReq } = req.body
-    console.log(category)
-    const categoryByName = await CategoryModel.findOne({
+    const { images, categoryId, ...productReq } = req.body
+    const categoryByID = await CategoryModel.findOne({
       where: {
-        name: category,
+        id: categoryId,
       },
     })
-    if (categoryByName === null) throw new Error('Category not found')
-    const newProductFromDB = await categoryByName.createProduct(productReq)
+    if (categoryByID === null) throw new Error('Category not found')
+    const newProductFromDB = await categoryByID.createProduct(productReq)
     let result = []
-    if (images.length !== 0) {
-      const promiseMass = images.map((elem) => newProductFromDB.createImage({ image: elem }))
-      result = await Promise.all(promiseMass)
+    if (images) {
+      if (images.length !== 0) {
+        const promiseMass = images.map((elem) => newProductFromDB.createImage({ image: elem }))
+        result = await Promise.all(promiseMass)
+      }
     }
     res
       .status(201)
@@ -73,13 +74,13 @@ const deleteProductById = async (req, res) => {
       console.log(resFromDB)
       res
         .status(400)
-        .json(`Product with id "${id}" not found`)
+        .json('Продукт не найден')
       return
     }
     console.log(resFromDB)
     res
       .status(200)
-      .json(`Product with id "${id}" success deleted`)
+      .json('Продукт успешно удален')
   } catch (error) {
     console.log(error)
     res.sendStatus(500)
@@ -89,17 +90,19 @@ const deleteProductById = async (req, res) => {
 const updateProductbyId = async (req, res) => {
   try {
     const { id } = req.params
-    const resFromDB = await ProductModel.update(req.body, {
+    await ProductModel.update(req.body, {
       where: {
         id: [id],
       },
     })
+    const productById = await ProductModel.findByPk(id, { include: ImageModel })
     res
       .status(200)
-      .json(resFromDB)
+      .json(productById)
   } catch (error) {
     console.log(error)
-    res.sendStatus(500)
+    res
+      .sendStatus(500)
   }
 }
 

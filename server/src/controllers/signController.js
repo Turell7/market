@@ -21,7 +21,7 @@ const signUp = async (req, res) => {
     }
     res
       .status(400)
-      .json({ error: 'This email is already used' })
+      .json({ error: 'Этот email-адрес уже используется' })
   } catch (error) {
     console.log(error)
     res
