@@ -1,5 +1,7 @@
 // import { Link } from 'react-router-dom'
 
+import { NavBar } from '../NavBar'
+
 export function Header() {
   return (
     <header className="bg-secondary p-4">
@@ -14,7 +16,7 @@ export function Header() {
 
           </div>
           <div>Test</div>
-          <button type="button" className="btn">Button</button>
+          <NavBar />
           {/* <Logo />
           <NavBar /> */}
         </div>

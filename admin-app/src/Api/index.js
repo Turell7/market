@@ -36,6 +36,11 @@ class Api {
   createProduct(productData) {
     return this.authInstance.post('/products', JSON.stringify(productData))
   }
+
+  deleteProduct(id) {
+    console.log({ id })
+    return this.authInstance.delete(`/products/${id}`)
+  }
 }
 
 const api = new Api('http://localhost:3050/api/v0.1/client')
