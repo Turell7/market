@@ -1,7 +1,9 @@
+/* eslint-disable prefer-template */
+/* eslint-disable spaced-comment */
+/* eslint-disable jsx-a11y/alt-text */
 import { useNavigate } from 'react-router-dom'
 import styles from './styles.module.scss'
 //import backgroundImg from '../../assets/background.jpg'
-
 
 export function ProductCard({id, image, name, price, discount}) {
 
@@ -40,6 +42,7 @@ const discountPriceFn = () => {
                 <p>{discount > 0 ? discountPriceFn() : price}p.</p>
               </div>
         </div>     
+
     </div>
   )
-}    
+}
