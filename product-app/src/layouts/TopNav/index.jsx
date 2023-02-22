@@ -13,7 +13,7 @@ export function TopNav() {
   return (
     <div className={styles.containerCategoty}>
       <div className={styles.container}>
-        {data.data.map((el) => (
+        {data?.data.map((el) => (
           <div>{el.name}</div>
         ))}
       </div>
