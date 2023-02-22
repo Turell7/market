@@ -26,7 +26,7 @@ export function FormRegistration({ closeModal, change }) {
 
   const signup = async (name, password, email) => {
     await mutateAsync(name, password, email)
-    // toast.success('Регистрация прошла успешно')
+    toast.success('Регистрация прошла успешно')
     closeModal()
   }
 

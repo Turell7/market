@@ -9,7 +9,16 @@
     justify-content: center;
     align-items: center;
     background-color: #F0F2F1;
-    padding: 10px 10px;   
+    padding: 10px 10px;
+    position: relative;   
+}
+
+.discount {
+    position: absolute;
+    top: 40px;
+    right: 14px;
+    background-color: rgb(226, 226, 2);
+    padding: 0px 15px;
 }
 
 .imgWr:hover {

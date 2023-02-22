@@ -38,11 +38,13 @@ class Api {
   }
 
   getAllProducts() {
-    return this.authInstance.get('/products')
+    const res = axios.get(`${this.path}/products`)
+    return res
   }
 
   getProductById(id) {
-    return this.authInstance(`/products/${id}`)
+    const res = axios.get(`${this.path}/products/${id}`)
+    return res
   }
 
   createProduct(productData) {
@@ -50,7 +52,7 @@ class Api {
   }
 }
 
-const api = new Api('http://localhost:3050/api/v0.1')
+const api = new Api('http://localhost:3050/api/v0.1/client')
 const adminApi = new Api('http://localhost:3050/api/v0.1/admin')
 
 export {

@@ -33,7 +33,7 @@ export const router = createBrowserRouter([
           element: <User />
         },
         {
-          path: '/cardinfo',
+          path: '/card/:id',
           element: <CardInfo />
         },
       ]
