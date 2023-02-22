@@ -2,6 +2,7 @@ import { ProductCard } from '../../components/ProductCard'
 import styles from './styles.module.scss'
 import { api } from '../../../Api'
 import { useQuery } from '@tanstack/react-query'
+import { Loader } from '../../components/Loader/Loader'
 
 
 export const PRODUCTS_QUERY_KEY = ['PRODUCTS_QUERY_KEY']
@@ -16,9 +17,16 @@ export function Catalog() {
   })
   
   
-  console.log(data, status, isError, isLoading, isFetching)
-  
-  const DataProducts = [1, 2, 3, 4]
+ // console.log(data, status, isError, isLoading, isFetching)
+
+const LoadCardsFn = () => {
+  if (isLoading || isFetching) {
+    return <Loader />
+  } else {
+    return  <div className={styles.catalogCardWr}>{data.data.map((el) => (<ProductCard key={el.id} {...el} />))}</div>  
+  }
+}
+
 
   return (
       <div className={styles.catalogWr}>
@@ -29,10 +37,8 @@ export function Catalog() {
             <button>НОВИНКИ</button>
             <button>ХИТ СЕЗОНА</button>
             <button>ПОПУЛЯРНОЕ</button>
-          </div>
-          <div className={styles.catalogCardWr}>
-          {DataProducts.map((el) => (<ProductCard key={crypto.randomUUID()} {...el} />))}
-          </div>          
+          </div>                    
+          {LoadCardsFn()}     
     </div>
   )
 }

@@ -43,7 +43,8 @@ class Api {
   }
 
   getProductById(id) {
-    return this.authInstance(`/products/${id}`)
+    const res = axios.get(`${this.path}/products/${id}`)
+    return res
   }
 
   createProduct(productData) {
