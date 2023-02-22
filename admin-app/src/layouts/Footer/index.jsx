@@ -1,12 +1,9 @@
-import { Box, Typography } from '@mui/material'
-import './footer.css'
-
 export function Footer() {
   return (
-    <Box className="footer">
-      <Typography variant="h6">
-        © 2023 The best dev team
-      </Typography>
-    </Box>
+    <footer className="footer footer-center p-4 text-base-content bg-secondary">
+      <div className="text-white">
+        <p>Copyright © 2023 - © 2023 The best dev team</p>
+      </div>
+    </footer>
   )
 }

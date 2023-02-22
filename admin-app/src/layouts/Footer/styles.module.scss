@@ -1,0 +1,21 @@
+// .footer {
+//   min-height: 4rem;
+//   display: flex;
+//   justify-content: center;
+//   margin-top: auto;
+//   align-items: center;
+//   background-color: #1976d2;
+//   color: white;
+//   z-index: 1200;
+// }
+.left,
+.right {
+  width: 20%;
+}
+.center {
+  flex-grow: 1;
+}
+.text {
+  text-align: center;
+  color: white;
+}

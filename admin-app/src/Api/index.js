@@ -38,7 +38,7 @@ class Api {
   }
 }
 
-const api = new Api('http://localhost:3050/api/v0.1')
+const api = new Api('http://localhost:3050/api/v0.1/client')
 const adminApi = new Api('http://localhost:3050/api/v0.1/admin')
 
 export {
