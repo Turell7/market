@@ -1,11 +1,42 @@
-.link {
-    color: inherit; 
-    text-decoration: inherit; 
+.containerAbout {
     font-weight: 600;
     opacity: 0.8;
 }
 
-.containerAbout {
-    font-weight: 600;
-    opacity: 0.8;
+.page {
+font-weight: 400;
+font-size: 24px;
+opacity: 0.8;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+margin-top: 150px;
+}
+
+.link {
+margin-top: 50px;
+padding: 10px 3px;
+border: none;
+text-decoration: inherit; 
+color: rgb(255, 255, 255);
+background-color: #8FC0AD;
+border-radius: 3px;
+font-weight: 400;
+font-size: 16px;
+border: 1px solid white;
+}
+
+.link>span {
+border: 1px solid white;
+padding: 6px 12px;
+}
+
+
+.link:hover {
+box-shadow: 0px 0px 3px 0.1px rgba(0, 0, 0, 0.527);
+}
+
+.link:active {
+background-color: #6c6c6c;
 }

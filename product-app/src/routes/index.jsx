@@ -6,6 +6,7 @@ import { Contacts } from "../pages/Contacts"
 import { Help } from "../pages/Help"
 import { Home } from "../pages/Home"
 import { CardInfo } from "../components/CardInfo"
+import { NotFoundPage } from "../components/NotFoundPage"
 
 export const router = createBrowserRouter([
     {
@@ -15,6 +16,10 @@ export const router = createBrowserRouter([
         {
           path: "/",
           element: <Home />,
+        },
+        {
+          path: "*",
+          element: <NotFoundPage />,
         },
         {
           path: "/contacts",
@@ -39,3 +44,4 @@ export const router = createBrowserRouter([
       ]
     },
   ])
+
