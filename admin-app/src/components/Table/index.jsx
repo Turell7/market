@@ -1,9 +1,13 @@
-import { TableItem } from '../TableItem'
+import { TableItem } from './TableItem'
 
-export function Table({ setIsAddItem, products }) {
+export function Table({ setIsAddItem, items, deleteItem }) {
+  const titlsTable = Object.keys(items[0])
+
+  const headerTable = () => titlsTable.map((e) => <th key={e}>{e}</th>)
+
   return (
     <div className="overflow-x-auto w-full">
-      <table className="table w-full">
+      <table className="table table-compact w-full">
         {/* head */}
         <thead>
           <tr>
@@ -12,12 +16,7 @@ export function Table({ setIsAddItem, products }) {
                 <input type="checkbox" className="checkbox" />
               </div>
             </th>
-            <th>Image</th>
-            <th>Titele</th>
-            <th>Price</th>
-            <th>stock</th>
-            <th>Discount</th>
-            <th>Description</th>
+            {headerTable()}
             <th>
               <button className="p-15 tooltip tooltip-bottom" data-tip="Created a new product" onClick={() => { setIsAddItem((prev) => !prev) }} type="button">
                 <svg className="fill-current text-gray-600 w-3 " viewBox="0 0 448 512">
@@ -28,10 +27,12 @@ export function Table({ setIsAddItem, products }) {
           </tr>
         </thead>
         <tbody>
-          {products?.map((item) => (
+          {items?.map((item) => (
             <TableItem
               key={item.id}
               item={item}
+              titlsTable={titlsTable}
+              deleteItem={deleteItem}
             />
           ))}
         </tbody>
@@ -39,12 +40,7 @@ export function Table({ setIsAddItem, products }) {
         <tfoot>
           <tr>
             <th> </th>
-            <th>Image</th>
-            <th>Titele</th>
-            <th>Price</th>
-            <th>stock</th>
-            <th>Discount</th>
-            <th>Description</th>
+            {headerTable()}
             <th> </th>
           </tr>
         </tfoot>
