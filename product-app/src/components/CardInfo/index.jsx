@@ -1,27 +1,27 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import { api } from '../../../Api'
 import styles from './styles.module.scss'
-//import backgroundImg from '../../assets/background.jpg'
 import { Loader } from '../Loader/Loader'
 
 const PRODUCTS_BYID_QUERY_KEY = ['PRODUCTS_BYID_QUERY_KEY']
 
 export function CardInfo() {
+  const dispatch = useDispatch()
 
   const { id } = useParams()
 
-  const {data, status, isError, isLoading, isFetching} = useQuery({
+  const { data, status, isError, isLoading, isFetching} = useQuery({
     queryKey: PRODUCTS_BYID_QUERY_KEY,
     queryFn: () => api.getProductById(id),
   })
-  
-  
- const discountImgFn = () => {
-  if (data.data.discount > 0) {
-    return <div className={styles.discount}>-{data.data.discount}%</div>
-  } else {
-    return
+
+  const discountImgFn = () => {
+    if (data.data.discount > 0) {
+      return <div className={styles.discount}>-{data.data.discount}%</div>
+    } else {
+      return
   }
 }
 
@@ -32,6 +32,7 @@ const discountPriceFn = () => {
 const basketQuantity = () => {
   console.log("В корзину", id)
 }
+
 
   return (
       <div className={styles.CardInfoWr}>
