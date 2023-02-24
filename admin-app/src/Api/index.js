@@ -21,6 +21,10 @@ class Api {
     return this.authInstance.get('/products')
   }
 
+  getAllCategories() {
+    return this.authInstance.get('/category')
+  }
+
   getProductById(id) {
     return this.authInstance(`/products/${id}`)
   }
@@ -35,6 +39,10 @@ class Api {
 
   createProduct(productData) {
     return this.authInstance.post('/products', JSON.stringify(productData))
+  }
+
+  createCategory(categoryData) {
+    return this.authInstance.post('/category', JSON.stringify(categoryData))
   }
 
   deleteProduct(id) {

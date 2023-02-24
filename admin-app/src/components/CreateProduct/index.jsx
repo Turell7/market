@@ -3,12 +3,16 @@ import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik'
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { adminApi } from '../../Api'
 
-export function CreateProduct({ setIsAddItem }) {
+export function CreateProduct() {
+  const navigate = useNavigate()
   const [imgUrl, setImgUrl] = useState()
-  const successHandler = () => { setIsAddItem((prev) => !prev) }
+  const successHandler = () => {
+    navigate('')
+  }
   const { mutate } = useMutation({
     mutationFn: (productData) => adminApi.createProduct(productData),
     onSuccess: successHandler,
@@ -22,7 +26,7 @@ export function CreateProduct({ setIsAddItem }) {
           price: '',
           discount: '',
           stock: '',
-          category: '',
+          categoryId: '',
           image: '',
           description: '',
         }}
@@ -95,13 +99,12 @@ export function CreateProduct({ setIsAddItem }) {
             </div>
             <div className="form-control">
               <div className="label">
-                <span className="label-text">Category</span>
+                <span className="label-text">categoryId</span>
               </div>
               <Field as="select" name="categoryId" className="input input-bordered">
                 <option value={1}>Без категории</option>
                 <option value={2}>Косметички</option>
-                <option value={3}>Кошельки</option>
-                <option value={4}>Наборы</option>
+                <option value={3}>Комплекты</option>
               </Field>
               <ErrorMessage component="span" name="categoryId" className="error" />
             </div>
