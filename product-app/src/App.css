@@ -3,7 +3,8 @@
   min-height: 100vh;
   display: grid;
   grid-template-rows: 30px 100px 50px auto 50px;
-  min-width: 556px;  
+  /* min-width: 556px;   */
+  min-width: 750px; 
 }
 
 .App>* {
