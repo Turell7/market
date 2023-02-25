@@ -62,7 +62,6 @@ export function FormAuthorization({ closeModal, change }) {
           <Field className={styles.input} key="password" name="password" type="password" placeholder="Пароль" />
           <ErrorMessage name="password" />
 
-
           <button type="submit" className={styles.btnAdd}>Войти</button>
           <button className={styles.btnAdd} type="button" onClick={() => { change((prev) => !prev) }}>Регистрация</button>
 
