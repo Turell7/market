@@ -14,7 +14,7 @@ export function TopNav() {
     <div className={styles.containerCategoty}>
       <div className={styles.container}>
         {data?.data.map((el) => (
-          <div>{el.name}</div>
+          <div key={el.id}>{el.name}</div>
         ))}
       </div>
     </div>

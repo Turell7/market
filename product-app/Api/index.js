@@ -51,6 +51,10 @@ class Api {
     const res = axios(`${this.path}/category`)
     return res
   }
+
+  getProductByIdCart(ids) {
+    return Promise.all(ids.map((id) => this.authInstance.get(`/products/${id}`)))
+  }
 }
 
 const api = new Api('http://localhost:3050/api/v0.1/client')
