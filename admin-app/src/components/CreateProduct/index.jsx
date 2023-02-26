@@ -13,7 +13,7 @@ export function CreateProduct() {
   const successHandler = () => {
     navigate('')
   }
-  const { mutate } = useMutation({
+  const { mutate, isLoading } = useMutation({
     mutationFn: (productData) => adminApi.createProduct(productData),
     onSuccess: successHandler,
   })
@@ -50,7 +50,7 @@ export function CreateProduct() {
               .max(800, 'Max 800 symbols')
               .required('Please set image url'),
             description: Yup.string()
-              .min(10, 'More than 10 symbols')
+              .min(5, 'More than 5 symbols')
               .max(1000, 'Max 1000 symbols')
               .required('Please set description'),
           },
@@ -130,7 +130,7 @@ export function CreateProduct() {
               <ErrorMessage component="span" name="description" className="error" />
             </div>
             <div className="form-control mt-6">
-              <button type="submit" className="btn btn-secondary">Add product</button>
+              <button disabled={isLoading} type="submit" className="btn btn-secondary">Add product</button>
             </div>
           </div>
         </Form>
