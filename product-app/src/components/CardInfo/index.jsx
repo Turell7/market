@@ -62,7 +62,11 @@ export function CardInfo() {
               <div className={styles.textBorder}>
                 <div className={styles.textWr}>
                   <p className={styles.favorites}>
-                    <button type="button" onClick={favoritesFn} className={styles.favoritesBtn}>
+                    <button
+                      type="button"
+                      // onClick={favoritesFn}
+                      className={styles.favoritesBtn}
+                    >
                       <i className="fas fa-star" />
                       Добавить в избранное
                       <i className="fas fa-star" />

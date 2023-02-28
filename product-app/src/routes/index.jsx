@@ -8,6 +8,7 @@ import { Home } from '../pages/Home'
 import { CardInfo } from '../components/CardInfo'
 import { Cart } from '../pages/Cart'
 import { Favorites } from '../pages/Favorites'
+import { NotFoundPage } from '../components/NotFoundPage'
 
 export const router = createBrowserRouter([
   {
@@ -34,14 +35,14 @@ export const router = createBrowserRouter([
         path: '/user',
         element: <User />,
       },
-      {
-        path: '/basket',
-        element: <Basket />,
-      },
-      {
-        path: '/favorites',
-        element: <Favorites />,
-      },
+      // {
+      //   path: '/basket',
+      //   element: <Basket />,
+      // },
+      // {
+      //   path: '/favorites',
+      //   element: <Favorites />,
+      // },
       {
         path: '/card/:id',
         element: <CardInfo />,
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
       {
         path: '/favorites',
         element: <Favorites />,
+      },
+      {
+        path: '/*',
+        element: <NotFoundPage />,
       },
     ],
   },

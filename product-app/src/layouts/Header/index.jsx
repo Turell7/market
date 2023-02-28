@@ -63,7 +63,7 @@ export function Header() {
               <img
                 src={cart}
                 className={styles.img}
-                onClick={() => navigate('/basket')}
+                onClick={() => navigate('/cart')}
                 alt="Корзина"
               />
               <button className={styles.btn} onClick={() => remove()} type="button">Выйти</button>
