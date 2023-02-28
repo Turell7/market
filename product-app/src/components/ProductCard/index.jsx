@@ -14,7 +14,7 @@ export function ProductCard({
 
   const discountImgFn = () => {
     if (discount > 0) {
-      (
+      return (
         <div className={styles.discount}>
           -
           {discount}
@@ -22,6 +22,7 @@ export function ProductCard({
         </div>
       )
     }
+    return null
   }
 
   const discountPriceFn = () => price - (price / 100 * discount)

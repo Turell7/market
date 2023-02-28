@@ -1,8 +1,8 @@
 /* eslint-disable import/no-named-as-default */
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
-import cartSlice from '../cartSlice/cartSlice'
-import favorteSlice from '../favoriteSlice/favorteSlice'
-import userSlices from './userSlice/userSlices'
+import cartSlice from './slices/cartSlice/cartSlice'
+import favorteSlice from './slices/favoriteSlice/favorteSlice'
+import userSlices from './slices/userSlices/userSlices'
 
 const USER_KEY = ['USER_KEY']
 const FAVORITE_KEY = ['FAVORITE_KEY']
