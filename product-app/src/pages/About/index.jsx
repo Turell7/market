@@ -8,7 +8,7 @@ export function About() {
 
       <div className={styles.page}>
         <p>Страница в разработке</p>
-      <Link to='/' className={styles.link}><span>На главную</span></Link>
+        <Link to="/" className={styles.link}><span>На главную</span></Link>
       </div>
 
     </>
