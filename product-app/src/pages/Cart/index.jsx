@@ -8,7 +8,7 @@ const getProductCart = (cartIds) => PRODUCT_CART.concat(cartIds)
 
 export function Cart() {
   const id = useSelector((store) => store.cart.items)
-  // console.log(id)
+
   const cartProduct = () => api.getProductByIdCart(id.map((el) => el.id))
 
   const { data } = useQuery({
@@ -17,9 +17,9 @@ export function Cart() {
     enabled: !!token,
   })
 
-  const dataProduct = data?.map((el) => el.id)
+  const dataProduct = data?.map((el) => el.data)
 
-  console.log(dataProduct)
+  console.log('****', dataProduct)
 
   return (
     <h3>Товары</h3>

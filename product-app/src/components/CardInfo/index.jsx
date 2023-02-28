@@ -9,22 +9,30 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
+import { toast } from 'react-toastify'
 import { api } from '../../../Api'
 import styles from './styles.module.scss'
 import { Loader } from '../Loader/Loader'
 import { addItem } from '../../redux/slices/cartSlice/cartSlice'
+import { addFavorite } from '../../redux/slices/favoriteSlice/favorteSlice'
 
 const PRODUCTS_BYID_QUERY_KEY = ['PRODUCTS_BYID_QUERY_KEY']
 
 export function CardInfo() {
+  const { id } = useParams()
+
   const dispatch = useDispatch()
 
-  const addProductRedux = (id) => {
-    console.log(id)
+  const addProductRedux = () => {
     dispatch(addItem({ id }))
+    toast.success('Товар добавлен в корзину')
   }
 
-  const { id } = useParams()
+  const favoritesFn = () => {
+    dispatch(addFavorite({ id }))
+    console.log("В избранное", id)
+    toast.success('Товар добавлен в избранное')
+  }
 
   const { data, isLoading, isFetching } = useQuery({
     queryKey: PRODUCTS_BYID_QUERY_KEY,
@@ -64,7 +72,7 @@ export function CardInfo() {
                   <p className={styles.favorites}>
                     <button
                       type="button"
-                      // onClick={favoritesFn}
+                      onClick={favoritesFn}
                       className={styles.favoritesBtn}
                     >
                       <i className="fas fa-star" />
@@ -78,7 +86,7 @@ export function CardInfo() {
                     {data.data.discount > 0 ? discountPriceFn() : data.data.price}
                     p.
                   </p>
-                  <button type="button" onClick={() => addProductRedux(data.data.id)} className={styles.btn}>
+                  <button type="button" onClick={() => addProductRedux(id)} className={styles.btn}>
                     <span>
                       <i
                         className="fa-solid fa-basket-shopping"

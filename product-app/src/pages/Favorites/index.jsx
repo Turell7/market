@@ -1,8 +1,11 @@
+import { useSelector } from 'react-redux'
 import { ProductCard } from '../../components/ProductCard'
 import styles from './styles.module.scss'
 
 export function Favorites() {
-  const data = 0
+  const data = useSelector((store) => store.favorites.items)
+
+  console.log(data)
 
   return (
     <div className={styles.favoritesContainer}>
