@@ -1,20 +1,28 @@
-/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable prefer-template */
-/* eslint-disable spaced-comment */
-/* eslint-disable react/jsx-wrap-multilines */
+/* eslint-disable jsx-a11y/alt-text */
+/* eslint-disable operator-linebreak */
+/* eslint-disable quotes */
 /* eslint-disable no-mixed-operators */
-/* eslint-disable arrow-body-style */
+/* eslint-disable consistent-return */
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-// import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { api } from '../../../Api'
 import styles from './styles.module.scss'
 import { Loader } from '../Loader/Loader'
+import { addItem } from '../../redux/slices/cartSlice/cartSlice'
 
 const PRODUCTS_BYID_QUERY_KEY = ['PRODUCTS_BYID_QUERY_KEY']
 
 export function CardInfo() {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
+
+  const addProductRedux = (id) => {
+    console.log(id)
+    dispatch(addItem({ id }))
+  }
 
   const { id } = useParams()
 
@@ -33,39 +41,32 @@ export function CardInfo() {
         </div>
       )
     }
-    return null
   }
 
-  const discountPriceFn = () => {
-    return data.data.price - (data.data.price / 100 * data.data.discount)
-  }
-
-  const favoritesFn = () => {
-    console.log('В избранное', id)
-  }
-
-  const basketQuantityFn = () => {
-    console.log('В корзину', id)
-  }
+  const discountPriceFn = () => data.data.price - (data.data.price / 100 * data.data.discount)
 
   return (
     <div className={styles.CardInfoWr}>
       {(isLoading || isFetching)
         ? <Loader />
-        : (
+        :
+        (
           <>
             <div className={styles.CardWr}>
               <div className={styles.imgBorder}>
                 <div className={styles.imgWr}>
-                  {/* <img src={backgroundImg} /> Используем картинку как "img"*/}
-                  <img style={{ backgroundImage: 'url(' + data.data.image + ')' }} /*Используем картинку как "backgroundImage" *//>
+                  <img style={{ backgroundImage: 'url(' + data.data.image + ')' }} />
                   {discountImgFn()}
                 </div>
               </div>
               <div className={styles.textBorder}>
                 <div className={styles.textWr}>
                   <p className={styles.favorites}>
-                    <button type="button" onClick={favoritesFn} className={styles.favoritesBtn}>
+                    <button
+                      type="button"
+                      // onClick={favoritesFn}
+                      className={styles.favoritesBtn}
+                    >
                       <i className="fas fa-star" />
                       Добавить в избранное
                       <i className="fas fa-star" />
@@ -77,9 +78,11 @@ export function CardInfo() {
                     {data.data.discount > 0 ? discountPriceFn() : data.data.price}
                     p.
                   </p>
-                  <button type="button" onClick={basketQuantityFn} className={styles.btn}>
+                  <button type="button" onClick={() => addProductRedux(data.data.id)} className={styles.btn}>
                     <span>
-                      <i className="fa-solid fa-basket-shopping" />
+                      <i
+                        className="fa-solid fa-basket-shopping"
+                      />
                       В корзину
                     </span>
                   </button>
@@ -91,7 +94,8 @@ export function CardInfo() {
                 {data.data.description}
               </div>
             </div>
-          </>)}
+          </>
+        )}
     </div>
   )
 }

@@ -6,9 +6,9 @@ import { Contacts } from '../pages/Contacts'
 import { Help } from '../pages/Help'
 import { Home } from '../pages/Home'
 import { CardInfo } from '../components/CardInfo'
-import { NotFoundPage } from '../components/NotFoundPage'
-import { Basket } from '../pages/Basket'
+import { Cart } from '../pages/Cart'
 import { Favorites } from '../pages/Favorites'
+import { NotFoundPage } from '../components/NotFoundPage'
 
 export const router = createBrowserRouter([
   {
@@ -18,10 +18,6 @@ export const router = createBrowserRouter([
       {
         path: '/',
         element: <Home />,
-      },
-      {
-        path: '*',
-        element: <NotFoundPage />,
       },
       {
         path: '/contacts',
@@ -39,17 +35,29 @@ export const router = createBrowserRouter([
         path: '/user',
         element: <User />,
       },
+      // {
+      //   path: '/basket',
+      //   element: <Basket />,
+      // },
+      // {
+      //   path: '/favorites',
+      //   element: <Favorites />,
+      // },
       {
-        path: '/basket',
-        element: <Basket />,
+        path: '/card/:id',
+        element: <CardInfo />,
+      },
+      {
+        path: '/cart',
+        element: <Cart />,
       },
       {
         path: '/favorites',
         element: <Favorites />,
       },
       {
-        path: '/card/:id',
-        element: <CardInfo />,
+        path: '/*',
+        element: <NotFoundPage />,
       },
     ],
   },

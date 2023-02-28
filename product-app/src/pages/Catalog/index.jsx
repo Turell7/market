@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable no-else-return */
 /* eslint-disable react/function-component-definition */
 /* eslint-disable react/no-unstable-nested-components */
 import { useQuery } from '@tanstack/react-query'
@@ -15,14 +13,16 @@ export function Catalog() {
     queryKey: PRODUCTS_QUERY_KEY,
     queryFn: () => api.getAllProducts(),
   })
-  // console.log(data, status, isError, isLoading, isFetching)
 
   const LoadCardsFn = () => {
     if (isLoading || isFetching) {
       return <Loader />
-    } else {
-      return <div className={styles.catalogCardWr}>{data.data.map((el) => (<ProductCard key={el.id} {...el} />))}</div>
     }
+    return (
+      <div className={styles.catalogCardWr}>
+        {data.data.map((el) => (<ProductCard key={el.id} {...el} />))}
+      </div>
+    )
   }
 
   return (
