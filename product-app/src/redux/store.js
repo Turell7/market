@@ -2,7 +2,11 @@
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
 import cartSlice from './slices/cartSlice/cartSlice'
 import favorteSlice from './slices/favoriteSlice/favorteSlice'
+<<<<<<< HEAD
 import userSlices from './slices/userSlices/userSlice/userSlices'
+=======
+import userSlices from './slices/userSlices/userSlices'
+>>>>>>> dev
 
 const USER_KEY = ['USER_KEY']
 const FAVORITE_KEY = ['FAVORITE_KEY']

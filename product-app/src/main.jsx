@@ -7,8 +7,8 @@ import {
 import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import { router } from './routes'
-import './main.css'
 import { store } from './redux/store'
+import './main.css'
 
 export const queryClient = new QueryClient()
 

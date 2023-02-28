@@ -61,14 +61,15 @@ export function CardInfo() {
               </div>
               <div className={styles.textBorder}>
                 <div className={styles.textWr}>
-                  <p>{data.data.name}</p>
-                  <p className={styles.rating}>
-                    <span className={styles.starTrue}><i className="fa-solid fa-star" /></span>
-                    <span className={styles.starTrue}><i className="fa-solid fa-star" /></span>
-                    <span className={styles.starTrue}><i className="fa-solid fa-star" /></span>
-                    <span className={styles.starTrue}><i className="fa-solid fa-star" /></span>
-                    <span className={styles.starTrue}><i className="fas fa-star" /></span>
+                  <p className={styles.favorites}>
+                    <button type="button" onClick={favoritesFn} className={styles.favoritesBtn}>
+                      <i className="fas fa-star" />
+                      Добавить в избранное
+                      <i className="fas fa-star" />
+                    </button>
+
                   </p>
+                  <p>{data.data.name}</p>
                   <p>
                     {data.data.discount > 0 ? discountPriceFn() : data.data.price}
                     p.
