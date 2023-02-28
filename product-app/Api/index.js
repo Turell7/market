@@ -15,7 +15,11 @@ class Api {
       maxContentLength: Infinity,
       maxBodyLength: Infinity,
       baseURL: this.path,
-    }) : null
+    }) : axios.create({
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity,
+      baseURL: this.path,
+    })
   }
 
   signUp(name, password, email) {
@@ -53,7 +57,10 @@ class Api {
   }
 
   getProductByIdCart(ids) {
-    return Promise.all(ids.map((id) => this.authInstance.get(`/products/${id}`)))
+    const res = Promise.all(ids.map((id) => this.authInstance(`${this.path}/products/${id}`)))
+    console.log(res)
+    return res
+    // return Promise.all(ids.map((id) => this.authInstance(`${this.path}/products/${id}`)))
   }
 }
 
