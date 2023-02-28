@@ -35,14 +35,6 @@ export const router = createBrowserRouter([
         path: '/user',
         element: <User />,
       },
-      // {
-      //   path: '/basket',
-      //   element: <Basket />,
-      // },
-      // {
-      //   path: '/favorites',
-      //   element: <Favorites />,
-      // },
       {
         path: '/card/:id',
         element: <CardInfo />,
@@ -56,7 +48,7 @@ export const router = createBrowserRouter([
         element: <Favorites />,
       },
       {
-        path: '/*',
+        path: '*',
         element: <NotFoundPage />,
       },
     ],

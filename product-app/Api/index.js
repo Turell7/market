@@ -51,16 +51,14 @@ class Api {
     return res
   }
 
-  getProductsCategory() {
-    const res = axios(`${this.path}/category`)
+  getProductByIdCart(ids) {
+    const res = Promise.all(ids.map((id) => axios.get(`${this.path}/products/${id}`)))
     return res
   }
 
-  getProductByIdCart(ids) {
-    const res = Promise.all(ids.map((id) => this.authInstance(`${this.path}/products/${id}`)))
-    console.log(res)
+  getProductsCategory() {
+    const res = axios(`${this.path}/category`)
     return res
-    // return Promise.all(ids.map((id) => this.authInstance(`${this.path}/products/${id}`)))
   }
 }
 
