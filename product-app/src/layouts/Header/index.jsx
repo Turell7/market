@@ -56,14 +56,14 @@ export function Header() {
               <img src={profile} onClick={() => navigate('/user')} className={styles.img} alt="Профиль" />
               <span>
                 <i
-                  className="fa-solid fa-heart"
+                  className="fa-regular fa-heart"
                   onClick={() => navigate('/favorites')}
                 />
               </span>
               <img
                 src={cart}
                 className={styles.img}
-                onClick={() => navigate('/cart')}
+                onClick={() => navigate('/basket')}
                 alt="Корзина"
               />
               <button className={styles.btn} onClick={() => remove()} type="button">Выйти</button>

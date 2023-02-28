@@ -8,7 +8,7 @@ import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 import { adminApi } from '../../../Api'
 import { queryClient } from '../../main'
-import { addUser } from '../../redux/slices/userSlices/userSlice/userSlices'
+import { addUser } from '../../redux/slices/userSlices/userSlices'
 import styles from './styles.module.scss'
 
 const USER_SIGN_IN = ['USER_SIGN_IN']
