@@ -15,6 +15,7 @@ import styles from './styles.module.scss'
 import { Loader } from '../Loader/Loader'
 import { addItem } from '../../redux/slices/cartSlice/cartSlice'
 import { addFavorite } from '../../redux/slices/favoriteSlice/favorteSlice'
+import { token } from '../../tools/utils'
 
 const PRODUCTS_BYID_QUERY_KEY = ['PRODUCTS_BYID_QUERY_KEY']
 
@@ -53,6 +54,8 @@ export function CardInfo() {
 
   const discountPriceFn = () => data.data.price - (data.data.price / 100 * data.data.discount)
 
+  console.log("!!!!!!!!!", token)
+
   return (
     <div className={styles.CardInfoWr}>
       {(isLoading || isFetching)
@@ -69,6 +72,7 @@ export function CardInfo() {
               </div>
               <div className={styles.textBorder}>
                 <div className={styles.textWr}>
+                  {token && (
                   <p className={styles.favorites}>
                     <button
                       type="button"
@@ -79,8 +83,8 @@ export function CardInfo() {
                       Добавить в избранное
                       <i className="fas fa-star" />
                     </button>
-
                   </p>
+                  )}
                   <p>{data.data.name}</p>
                   <p>
                     {data.data.discount > 0 ? discountPriceFn() : data.data.price}
