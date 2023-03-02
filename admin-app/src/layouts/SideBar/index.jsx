@@ -26,6 +26,11 @@ export function SideBar() {
             <span>Сategories</span>
           </NavLink>
         </li>
+        <li>
+          <NavLink to="/test-uploads-files" className="list-group-item list-group-item-action">
+            <span>Test uploads files</span>
+          </NavLink>
+        </li>
       </ul>
 
     </div>
