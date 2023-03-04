@@ -27,6 +27,7 @@ export function Header() {
   const remove = () => {
     localStorage.clear()
     setAuth((prev) => !prev)
+    navigate('/')
   }
 
   const userToken = localStorage.getItem('USER_KEY')
@@ -56,7 +57,7 @@ export function Header() {
               <img src={profile} onClick={() => navigate('/user')} className={styles.img} alt="Профиль" />
               <span>
                 <i
-                  className="fa-regular fa-heart"
+                  className="fa-regular fa-star"
                   onClick={() => navigate('/favorites')}
                 />
               </span>

@@ -15,12 +15,48 @@
 
 .discount {
     position: absolute;
-    top: 40px;
+    top: 30px;
     right: 14px;
     background-color: rgb(226, 211, 2);
     padding: 0px 15px;
     font-weight: 600;
     opacity: 0.9;
+}
+
+.favorites {
+    position: absolute;
+    top: 25px;
+    left: 10px;
+    cursor: pointer;
+    padding: 5px 5px;
+}
+
+.favoritesTrue> i {
+    font-size: 22px;
+    color: #8FC0AD;
+    margin: 0px 10px;
+}
+
+.favoritesFalse> i {
+    font-size: 22px;
+    color: #6c6c6c;
+    margin: 0px 10px;
+}
+
+.starWr {
+    position: absolute;
+    font-size: 24px;
+    color: white;
+    left: 14px;
+    top: -1px;
+}
+
+.starWr:hover {
+    color: #e4dede;
+}
+
+.starWr:active {
+    color: #6c6c6c;
 }
 
 .imgWr:hover {

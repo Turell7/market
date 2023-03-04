@@ -38,7 +38,7 @@
 
 .discount {
     position: absolute;
-    top: 40px;
+    top: 25px;
     right: 0;
     background-color: rgb(226, 211, 2);
     padding: 0px 20px;
@@ -78,30 +78,54 @@
     background-color: #F0F2F1;
     border: 2px solid white; 
     height: 99%;
+    position: relative;
 }
 
-.favoritesBtn> i {
-    font-size: 12px;
-    margin-left: 5px;
-    margin-right: 5px;
+.favorites {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.favoritesTrue> i {
+    font-size: 24px;
+    color: #8FC0AD;
+    margin: 0px 10px;
+}
+
+.favoritesFalse> i {
+    font-size: 24px;
+    color: #6c6c6c;
+    margin: 0px 10px;
 }
 
 .favoritesBtn {
-    padding: 10px 3px;
-    border: none;
-    color: #8FC0AD;
-    font-weight: 400;
-    font-size: 14px;
+    border: none;    
     cursor: pointer;
-    margin-bottom: 20px;
+    padding: 5px 5px;
+    position: relative;
 }
 
-.favoritesBtn:hover {
-    color: #709486;
+.starWr {
+    position: absolute;
+    font-size: 34px;
+    color: white;
+    right: 9px;
+    top: -2px;
 }
 
-.favoritesBtn:active {
+.starWr:hover {
+    color: #e4dede;
+}
+
+.starWr:active {
     color: #6c6c6c;
+}
+
+.star > i {
+    font-size: 16px;
+    margin: 15px 5px;
+    color: #8FC0AD;
 }
 
 .btn {
