@@ -6,13 +6,15 @@ import { Link } from 'react-router-dom'
 import { api } from '../../../Api'
 import { Loader } from '../../components/Loader/Loader'
 import { ProductCard } from '../../components/ProductCard'
-import { token } from '../../tools/utils'
+import { getToken } from '../../tools/utils'
 import styles from './styles.module.scss'
 
 export const FAVORITES_CARD = ['FAVORITES_CARD']
 const getFavoritesCart = (cardIds) => FAVORITES_CARD.concat(cardIds)
 
 export function Favorites() {
+  const token = getToken()
+
   const id = useSelector((store) => store.favorites.items)
 
   const cardProduct = () => api.getProductByIdCart(id.map((el) => el.id))

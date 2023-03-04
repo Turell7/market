@@ -8,21 +8,25 @@
 /* eslint-disable consistent-return */
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { toast } from 'react-toastify'
 import { api } from '../../../Api'
 import styles from './styles.module.scss'
 import { Loader } from '../Loader/Loader'
 import { addItem } from '../../redux/slices/cartSlice/cartSlice'
 import { addFavorite } from '../../redux/slices/favoriteSlice/favorteSlice'
-import { token } from '../../tools/utils'
+import { getToken } from '../../tools/utils'
 
 const PRODUCTS_BYID_QUERY_KEY = ['PRODUCTS_BYID_QUERY_KEY']
 
 export function CardInfo() {
   const { id } = useParams()
-
+  const token = getToken()
   const dispatch = useDispatch()
+
+  const obj = { id: Number(id) }
+  const favorite = useSelector((store) => store.favorites.items)
+  const isLike = favorite.find((el) => el.id === Number(id))
 
   const addProductRedux = () => {
     dispatch(addItem({ id }))
@@ -30,9 +34,13 @@ export function CardInfo() {
   }
 
   const favoritesFn = () => {
-    dispatch(addFavorite({ id }))
-    console.log("В избранное", id)
-    toast.success('Товар добавлен в избранное')
+    if (isLike) {
+      dispatch(addFavorite(obj))
+      toast.success('Товар удалён из избранного')
+    } else {
+      dispatch(addFavorite(obj))
+      toast.success('Товар добавлен в избранное')
+    }
   }
 
   const { data, isLoading, isFetching } = useQuery({
@@ -53,8 +61,6 @@ export function CardInfo() {
   }
 
   const discountPriceFn = () => data.data.price - (data.data.price / 100 * data.data.discount)
-
-  console.log("!!!!!!!!!", token)
 
   return (
     <div className={styles.CardInfoWr}>
@@ -79,17 +85,26 @@ export function CardInfo() {
                       onClick={favoritesFn}
                       className={styles.favoritesBtn}
                     >
-                      <i className="fas fa-star" />
-                      Добавить в избранное
-                      <i className="fas fa-star" />
+                      <span className={isLike ? styles.favoritesTrue : styles.favoritesFalse}><i className="fas fa-star" /></span>
+                      <span className={styles.starWr}><i className="fa-regular fa-star" /></span>
                     </button>
                   </p>
                   )}
                   <p>{data.data.name}</p>
+                  {!token && (
+                  <span className={styles.star}>
+                    <i className="fas fa-star" />
+                    <i className="fas fa-star" />
+                    <i className="fas fa-star" />
+                    <i className="fas fa-star" />
+                    <i className="fas fa-star" />
+                  </span>
+                  )}
                   <p>
                     {data.data.discount > 0 ? discountPriceFn() : data.data.price}
                     p.
                   </p>
+                  {token && (
                   <button type="button" onClick={() => addProductRedux(id)} className={styles.btn}>
                     <span>
                       <i
@@ -98,6 +113,7 @@ export function CardInfo() {
                       В корзину
                     </span>
                   </button>
+                  )}
                 </div>
               </div>
             </div>

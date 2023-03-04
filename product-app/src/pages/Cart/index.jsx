@@ -1,12 +1,14 @@
 import { useSelector } from 'react-redux'
 import { useQuery } from '@tanstack/react-query'
 import { api } from '../../../Api'
-import { token } from '../../tools/utils'
+import { getToken } from '../../tools/utils'
 
 export const PRODUCT_CART = ['PRODUCT_CART']
 const getProductCart = (cartIds) => PRODUCT_CART.concat(cartIds)
 
 export function Cart() {
+  const token = getToken()
+
   const id = useSelector((store) => store.cart.items)
 
   const cartProduct = () => api.getProductByIdCart(id.map((el) => el.id))
