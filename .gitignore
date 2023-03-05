@@ -4,6 +4,9 @@
 /server/node_modules
 /server/.env
 
+/file-manager/node_modules
+/file-manager/.env
+
 # Logs
 /admin-app/logs
 *.log
@@ -39,3 +42,4 @@
 *.njsproj
 *.sln
 *.sw?
+*.env

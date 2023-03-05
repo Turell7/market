@@ -4,17 +4,19 @@ import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 import { adminApi } from '../../../Api'
 import { queryClient } from '../../main'
-import { addUser } from '../../redux/slices/userSlices/userSlice/userSlices'
+import { addUser } from '../../redux/slices/userSlices/userSlices'
 import styles from './styles.module.scss'
 
 const USER_SIGN_IN = ['USER_SIGN_IN']
 
 export function FormAuthorization({ closeModal, change }) {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const getSignIn = (email, password) => adminApi.signIn(email, password)
 
@@ -33,6 +35,7 @@ export function FormAuthorization({ closeModal, change }) {
     closeModal()
     dispatch(addUser(data.data.accessToken))
     toast.success('Вы авторизованны!')
+    navigate('/')
   }
 
   return (
@@ -61,7 +64,6 @@ export function FormAuthorization({ closeModal, change }) {
 
           <Field className={styles.input} key="password" name="password" type="password" placeholder="Пароль" />
           <ErrorMessage name="password" />
-
 
           <button type="submit" className={styles.btnAdd}>Войти</button>
           <button className={styles.btnAdd} type="button" onClick={() => { change((prev) => !prev) }}>Регистрация</button>

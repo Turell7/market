@@ -1,12 +1,12 @@
 /* eslint-disable function-paren-newline */
 import axios from 'axios'
-import { token } from '../src/tools/utils'
+import { getToken } from '../src/tools/utils'
 
 class Api {
   constructor(path) {
     this.path = path
     this.headers = { 'Content-Type': 'application/json' }
-    this.token = token()
+    this.token = getToken()
     this.authInstance = this.token ? axios.create({
       headers: {
         authorization: `Bearer ${this.token}`,
@@ -15,7 +15,11 @@ class Api {
       maxContentLength: Infinity,
       maxBodyLength: Infinity,
       baseURL: this.path,
-    }) : null
+    }) : axios.create({
+      maxContentLength: Infinity,
+      maxBodyLength: Infinity,
+      baseURL: this.path,
+    })
   }
 
   signUp(name, password, email) {
@@ -44,6 +48,11 @@ class Api {
 
   getProductById(id) {
     const res = axios.get(`${this.path}/products/${id}`)
+    return res
+  }
+
+  getProductByIdCart(ids) {
+    const res = Promise.all(ids.map((id) => axios.get(`${this.path}/products/${id}`)))
     return res
   }
 

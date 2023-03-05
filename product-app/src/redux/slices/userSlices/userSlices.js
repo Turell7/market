@@ -12,11 +12,14 @@ export const userSlice = createSlice({
     addUser(state, action) {
       state.token = action.payload
     },
+    clearUser: (state) => {
+      state.token = ''
+    },
   },
 })
 
 export const {
-  addUser,
+  addUser, clearUser,
 } = userSlice.actions
 
 export default userSlice.reducer

@@ -4,11 +4,11 @@ import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
-import {  RouterProvider } from "react-router-dom"
-import { router } from './routes'
+import { RouterProvider } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import { router } from './routes'
+import { store } from './redux/store'
 import './main.css'
-import { store } from './redux/slices/userSlices/store'
 
 export const queryClient = new QueryClient()
 

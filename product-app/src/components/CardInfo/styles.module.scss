@@ -38,11 +38,12 @@
 
 .discount {
     position: absolute;
-    top: 40px;
+    top: 25px;
     right: 0;
     background-color: rgb(226, 211, 2);
-    padding: 0px 15px;
+    padding: 0px 20px;
     font-weight: 600;
+    font-size: 20px;
     opacity: 0.9;
 }
 
@@ -77,18 +78,54 @@
     background-color: #F0F2F1;
     border: 2px solid white; 
     height: 99%;
+    position: relative;
 }
 
-.starTrue{
+.favorites {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.favoritesTrue> i {
+    font-size: 24px;
     color: #8FC0AD;
+    margin: 0px 10px;
 }
 
-.rating {
-    margin: 0;
+.favoritesFalse> i {
+    font-size: 24px;
+    color: #6c6c6c;
+    margin: 0px 10px;
 }
 
-.rating>span {
-    margin: 0px 3px;
+.favoritesBtn {
+    border: none;    
+    cursor: pointer;
+    padding: 5px 5px;
+    position: relative;
+}
+
+.starWr {
+    position: absolute;
+    font-size: 34px;
+    color: white;
+    right: 9px;
+    top: -2px;
+}
+
+.starWr:hover {
+    color: #e4dede;
+}
+
+.starWr:active {
+    color: #6c6c6c;
+}
+
+.star > i {
+    font-size: 16px;
+    margin: 15px 5px;
+    color: #8FC0AD;
 }
 
 .btn {
@@ -101,6 +138,8 @@
     font-size: 16px;
     border: 1px solid white;
     margin-bottom: 20px;
+    margin-top: 50px;
+    cursor: pointer;
 }
 
 .btn>span {

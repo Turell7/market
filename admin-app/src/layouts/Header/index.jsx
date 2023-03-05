@@ -15,7 +15,7 @@ export function Header() {
             </label>
 
           </div>
-          <div>Test</div>
+          {/* <div>Test</div> */}
           <NavBar />
           {/* <Logo />
           <NavBar /> */}

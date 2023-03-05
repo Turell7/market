@@ -6,6 +6,8 @@ import { Users } from '../pages/Users'
 import { Products } from '../pages/Products'
 import { Categories } from '../pages/Categories'
 import { Authorization } from '../pages/Autorization'
+import { TestUploadsFiles } from '../pages/TestUpladsFiles'
+import { TestFileManager } from '../pages/TestFileManager'
 
 export const router = createBrowserRouter([
   {
@@ -35,6 +37,14 @@ export const router = createBrowserRouter([
       {
         path: 'categories',
         element: <Categories />,
+      },
+      {
+        path: 'test-uploads-files',
+        element: <TestUploadsFiles />,
+      },
+      {
+        path: 'test-file-manager',
+        element: <TestFileManager />,
       },
     ],
   },

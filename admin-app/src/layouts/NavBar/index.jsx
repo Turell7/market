@@ -2,13 +2,8 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import stylesNavBar from './styles.module.scss'
 import { useLogOut } from '../../hooks/useLogOut'
-// import { ReactComponent as FavoriteIcon } from '../../UI/icons/ic-favorites.svg'
-// import { ReactComponent as BasketIcon } from '../../UI/icons/ic-basket.svg'
-// import { Auth } from '../../forms/Auth'
 
 export function NavBar() {
-  // const { items } = useSelector((store) => store.cart)
-  // const productFavoriteIds = useSelector((store) => store.favorite)
   const { logOut } = useLogOut()
   const { user } = useSelector((store) => store.user)
 
@@ -41,11 +36,11 @@ export function NavBar() {
       </ul>
     )
   }
-  return (
-    <ul>
-      <button type="button" className="btn btn-secondary shadow">
-        LogIn
-      </button>
-    </ul>
-  )
+  // return (
+  //   <ul>
+  //     <button type="button" className="btn btn-secondary shadow">
+  //       LogIn
+  //     </button>
+  //   </ul>
+  // )
 }
