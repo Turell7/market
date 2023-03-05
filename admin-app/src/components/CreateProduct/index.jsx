@@ -1,17 +1,21 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik'
 import { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { adminApi } from '../../Api'
+import { PRODUCTS_QUERY_KEY } from '../../tools/queryKeys'
 
 export function CreateProduct() {
-  const navigate = useNavigate()
+  const queryClient = useQueryClient()
+  // const navigate = useNavigate()
   const [imgUrl, setImgUrl] = useState()
+
   const successHandler = () => {
-    navigate('')
+    queryClient.invalidateQueries({ queryKey: PRODUCTS_QUERY_KEY })
+    // navigate('')
   }
   const { mutate, isLoading } = useMutation({
     mutationFn: (productData) => adminApi.createProduct(productData),
