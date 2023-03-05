@@ -32,6 +32,7 @@ server.use('/api/v0.1/admin', adminSideRouter)
 server.post('/upload/images', upload.single('image'), (req, res) => {
   // res.send('Image Uploaded')
   // console.log(req)
+
   try {
     if (req.file) {
       res.json(req.file)

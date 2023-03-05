@@ -17,7 +17,7 @@ export function TestUploadsFiles() {
       })
 
         .then((res) => {
-          console.log(res)
+          console.log(res.data)
           console.log(res.data.path)
         })
     } catch (error) {
