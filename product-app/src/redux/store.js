@@ -25,8 +25,8 @@ export const store = configureStore({
 
 store.subscribe(() => {
   const storeState = store.getState()
-  const { user, favorite, cart } = storeState
+  const { user, favorites, cart } = storeState
   localStorage.setItem(USER_KEY, JSON.stringify(user))
-  localStorage.setItem(FAVORITE_KEY, JSON.stringify(favorite))
+  localStorage.setItem(FAVORITE_KEY, JSON.stringify(favorites))
   localStorage.setItem(CART_KEY, JSON.stringify(cart))
 })

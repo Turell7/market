@@ -1,5 +1,7 @@
-export const token = () => {
+export function getToken() {
   const userToken = localStorage.getItem('USER_KEY')
-  if (userToken) return JSON.parse(userToken).token
+  if (userToken) {
+    return JSON.parse(userToken).token
+  }
   return null
 }

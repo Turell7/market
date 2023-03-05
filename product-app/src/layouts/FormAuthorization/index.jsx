@@ -4,6 +4,7 @@ import {
   ErrorMessage, Field, Form, Formik,
 } from 'formik'
 import { useDispatch } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import * as Yup from 'yup'
 import { adminApi } from '../../../Api'
@@ -15,6 +16,7 @@ const USER_SIGN_IN = ['USER_SIGN_IN']
 
 export function FormAuthorization({ closeModal, change }) {
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const getSignIn = (email, password) => adminApi.signIn(email, password)
 
@@ -33,6 +35,7 @@ export function FormAuthorization({ closeModal, change }) {
     closeModal()
     dispatch(addUser(data.data.accessToken))
     toast.success('Вы авторизованны!')
+    navigate('/')
   }
 
   return (
