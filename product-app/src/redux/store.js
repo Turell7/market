@@ -1,12 +1,9 @@
 /* eslint-disable import/no-named-as-default */
 import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { CART_KEY, FAVORITE_KEY, USER_KEY } from './initState'
 import cartSlice from './slices/cartSlice/cartSlice'
 import favoriteSlice from './slices/favoriteSlice/favorteSlice'
 import userSlices from './slices/userSlices/userSlices'
-
-const USER_KEY = ['USER_KEY']
-const FAVORITE_KEY = ['FAVORITE_KEY']
-const CART_KEY = ['CART_KEY']
 
 const middleware = getDefaultMiddleware({
   immutableCheck: false,
