@@ -1,13 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
-
-const initialState = {
-  token: '',
-}
+import { getUserInitialState } from '../../initState'
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: getUserInitialState(),
   reducers: {
     addUser(state, action) {
       state.token = action.payload
@@ -18,8 +15,6 @@ export const userSlice = createSlice({
   },
 })
 
-export const {
-  addUser, clearUser,
-} = userSlice.actions
+export const { addUser, clearUser } = userSlice.actions
 
 export default userSlice.reducer
