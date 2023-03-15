@@ -1,15 +1,11 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-plusplus */
 import { createSlice } from '@reduxjs/toolkit'
-
-const initialState = {
-  totalPrice: 0,
-  items: [],
-}
+import { getCartInitialState } from '../../initState'
 
 export const cartSlice = createSlice({
   name: 'cart',
-  initialState,
+  initialState: getCartInitialState(),
   reducers: {
     addItem(state, action) {
       const findItem = state.items.find((obj) => obj.id === action.payload.id)

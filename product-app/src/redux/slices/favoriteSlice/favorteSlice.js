@@ -1,13 +1,10 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit'
-
-const initialState = {
-  items: [],
-}
+import { getFavoriteInitialState } from '../../initState'
 
 export const favoriteSlice = createSlice({
   name: 'favorite',
-  initialState,
+  initialState: getFavoriteInitialState(),
   reducers: {
     addFavorite(state, action) {
       const findItem = state.items.find((obj) => obj.id === action.payload.id)
